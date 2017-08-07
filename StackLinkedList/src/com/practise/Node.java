@@ -1,11 +1,11 @@
-package com.trial.one;
+package com.practise;
 
-public class Node<T extends Comparable<T>> {
+public class Node <T extends Comparable<T>>{
+
 	private T data;
 	private Node<T> nextNode;
-
+	
 	public Node(T data) {
-		super();
 		this.data = data;
 	}
 
@@ -29,5 +29,7 @@ public class Node<T extends Comparable<T>> {
 	public String toString() {
 		return this.data.toString();
 	}
-
+	
+	
+	
 }

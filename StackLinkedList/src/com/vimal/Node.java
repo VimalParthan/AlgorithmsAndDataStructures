@@ -1,6 +1,7 @@
-package com.trial.one;
+package com.vimal;
 
 public class Node<T extends Comparable<T>> {
+
 	private T data;
 	private Node<T> nextNode;
 

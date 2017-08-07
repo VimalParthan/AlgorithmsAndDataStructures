@@ -25,9 +25,7 @@ public class Person implements Comparable<Person>{
 		return this.name;
 	}
 	@Override
-	public int compareTo(Person person) {
-		// TODO Auto-generated method stub
-	
+	public int compareTo(Person person) {	
 		if(Integer.compare(this.age, person.getAge())==0&&this.name.equals(person.name)){
 			return 0;
 		} else{

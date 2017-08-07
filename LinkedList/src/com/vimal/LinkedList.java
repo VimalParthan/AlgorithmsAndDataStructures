@@ -9,7 +9,7 @@ public class LinkedList <T extends Comparable<T>>implements List<T>{
 	public void insert(T data) {
 		++this.sizeOfList;
 		if(root==null){
-			this.root = new Node<>(data);
+			this.root = new Node<T>(data);
 		}else{
 			insertDataAtBegining(data);
 		}	
@@ -18,8 +18,8 @@ public class LinkedList <T extends Comparable<T>>implements List<T>{
 	
 	
 	private void insertDataAtBegining(T data){
-		Node<T> newNode = new Node<>(data);
-		newNode.setNextNode(root);
+		Node<T> newNode = new Node<T>(data);
+		newNode.setNextNode(this.root);
 		this.root = newNode;
 	}
 	
