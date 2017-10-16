@@ -42,5 +42,10 @@ public class Vertex {
 	public void addVertex(Vertex vertex){
 		this.adjacencyList.add(vertex);
 	}
-
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return data;
+	}
 }

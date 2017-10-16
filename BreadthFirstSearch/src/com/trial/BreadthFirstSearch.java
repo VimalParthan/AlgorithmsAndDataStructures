@@ -5,25 +5,22 @@ import java.util.Queue;
 
 public class BreadthFirstSearch {
 	
-	
-	public void bfs(Vertex root){
+	public void bfs(Vertex rootVertex){
 		
-		Queue<Vertex> vertexQueue = new LinkedList<>();
-		root.setVisited(true);
-		vertexQueue.add(root);
+		Queue<Vertex> vertexQueue = new LinkedList<Vertex>();
+		rootVertex.setVisited(true);
+		vertexQueue.add(rootVertex);
 		
 		while(!vertexQueue.isEmpty()){
-			Vertex currentVertex = vertexQueue.remove();
-			System.out.println(currentVertex.getData());
-			
-			for(Vertex v: currentVertex.getAdjacencyList()){
+			Vertex currentVertex = vertexQueue.poll();
+			System.out.println(currentVertex);
+			for(Vertex v: currentVertex.getAdjacentVertices()){
 				if(!v.isVisited()){
-					v.isVisited();
-					vertexQueue.add(v);
+				v.setVisited(true);
+				vertexQueue.add(v);
 				}
 			}
 		}
-		
 	}
 
 }
