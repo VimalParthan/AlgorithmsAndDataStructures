@@ -1,14 +1,19 @@
-package com.trial;
 
 public class Edge {
 	
+	private double weight;
 	private Vertex startVertex;
 	private Vertex endVertex;
-	private int weight;
-	public Edge(Vertex startVertex, Vertex endVertex, int weight) {
+	public Edge(double weight, Vertex startVertex, Vertex endVertex) {
 		super();
+		this.weight = weight;
 		this.startVertex = startVertex;
 		this.endVertex = endVertex;
+	}
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 	public Vertex getStartVertex() {
@@ -22,12 +27,6 @@ public class Edge {
 	}
 	public void setEndVertex(Vertex endVertex) {
 		this.endVertex = endVertex;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
 	}
 	
 	

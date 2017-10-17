@@ -3,24 +3,25 @@ package com.trial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex implements Comparable<Vertex>{
-
+public class Vertex {
+	
 	private String name;
 	private List<Edge> adjacentEdges;
-	private int distance = Integer.MAX_VALUE;
-	private Vertex previous;
-
-	public Vertex(String name) {
+	private int distance=Integer.MAX_VALUE;
+	private Vertex previousVertex;
+	
+	public Vertex (String name){
 		this.name = name;
 		this.adjacentEdges = new ArrayList<>();
 	}
-
-	public void addNeighbour(Edge edge) {
+	
+	public void addNeighbour(Edge edge){
 		this.adjacentEdges.add(edge);
 	}
-
+	
 	@Override
 	public String toString() {
+	
 		return this.name;
 	}
 
@@ -48,18 +49,14 @@ public class Vertex implements Comparable<Vertex>{
 		this.distance = distance;
 	}
 
-	public Vertex getPrevious() {
-		return previous;
+	public Vertex getPreviousVertex() {
+		return previousVertex;
 	}
 
-	public void setPrevious(Vertex previous) {
-		this.previous = previous;
+	public void setPreviousVertex(Vertex previousVertex) {
+		this.previousVertex = previousVertex;
 	}
-
-	@Override
-	public int compareTo(Vertex otherVertex) {
-		// TODO Auto-generated method stub
-		return this.distance-otherVertex.getDistance();
-	}
+	
+	
 
 }
