@@ -11,11 +11,11 @@ public class App {
 				
 				vertex0.addNeighbour(new Edge(vertex0,vertex1,1));
 				vertex1.addNeighbour(new Edge(vertex1,vertex2,1));
-				vertex2.addNeighbour(new Edge(vertex2,vertex0,3));
+				vertex0.addNeighbour(new Edge(vertex0,vertex2,1));
 				
 				
-				Djikstra dijsktraAlgorithm = new Djikstra();
-				dijsktraAlgorithm.djikstrasAlgo(vertex0);
+				DjikstrasAlgorithm dijsktraAlgorithm = new DjikstrasAlgorithm();
+				dijsktraAlgorithm.djikstrasAlgorithm(vertex0);
 				dijsktraAlgorithm.shortestPathTo(vertex2);
 				System.out.println(vertex2.getDistance());
 	}

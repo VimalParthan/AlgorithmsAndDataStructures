@@ -2,41 +2,35 @@ package com.trial;
 
 public class Edge {
 	
-	private Vertex startvertex;
-	private Vertex endVertex;
+	private Vertex startVertex;
+	private Vertex targetVertex;
 	private double weight;
 	
-	public Edge(Vertex startvertex, Vertex endVertex, double weight) {
+	
+	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
 		super();
-		this.startvertex = startvertex;
-		this.endVertex = endVertex;
+		this.startVertex = startVertex;
+		this.targetVertex = targetVertex;
 		this.weight = weight;
 	}
-
-	public Vertex getStartvertex() {
-		return startvertex;
+	
+	public Vertex getStartVertex() {
+		return startVertex;
 	}
-
-	public void setStartvertex(Vertex startvertex) {
-		this.startvertex = startvertex;
+	public void setStartVertex(Vertex startVertex) {
+		this.startVertex = startVertex;
 	}
-
-	public Vertex getEndVertex() {
-		return endVertex;
+	public Vertex getTargetVertex() {
+		return targetVertex;
 	}
-
-	public void setEndVertex(Vertex endVertex) {
-		this.endVertex = endVertex;
+	public void setTargetVertex(Vertex targetVertex) {
+		this.targetVertex = targetVertex;
 	}
-
 	public double getWeight() {
 		return weight;
 	}
-
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 	
-	
-
 }

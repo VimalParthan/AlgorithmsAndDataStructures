@@ -3,7 +3,7 @@ import java.util.Stack;
 
 public class AcyclicShortestPath {
 
-	public void shortestPath(List<Vertex> vertexList, Vertex sourcevertex, Vertex targetVertex) {
+	public void shortestPath(List<Vertex> vertexList, Vertex sourcevertex) {
 
 		sourcevertex.setDistance(0);
 		TopologicalSort topologicalSort = new TopologicalSort();
@@ -25,11 +25,7 @@ public class AcyclicShortestPath {
 			}
 		}
 
-		if (targetVertex.getDistance() == Double.MAX_VALUE) {
-			System.out.println("No shortest path there ....");
-		} else {
-			System.out.println("Target vertex shortest path: " + targetVertex.getDistance());
-		}
+		
 
 	}
 

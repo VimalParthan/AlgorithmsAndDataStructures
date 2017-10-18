@@ -13,7 +13,7 @@ public class App {
 		Vertex vertex4 = new Vertex("4");
 		Vertex vertex5 = new Vertex("5");
 		Vertex vertex6 = new Vertex("6");
-		
+
 		vertex1.addNeighbour(vertex2);
 		vertex1.addNeighbour(vertex3);
 		vertex2.addNeighbour(vertex3);
@@ -22,9 +22,7 @@ public class App {
 		vertex5.addNeighbour(vertex6);
 		vertex6.addNeighbour(vertex4);
 		
-		
 		List<Vertex> vertexList = new ArrayList<>();
-		
 		vertexList.add(vertex1);
 		vertexList.add(vertex2);
 		vertexList.add(vertex3);
@@ -33,9 +31,7 @@ public class App {
 		vertexList.add(vertex6);
 		
 		CycleDetection cycleDetection = new CycleDetection();
-		
 		cycleDetection.detectCycle(vertexList);
-
 	}
 
 }

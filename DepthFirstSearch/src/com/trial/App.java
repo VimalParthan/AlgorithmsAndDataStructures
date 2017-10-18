@@ -15,10 +15,10 @@ public class App {
 		
 		List<Vertex> list = new ArrayList<>();
 		
-		v1.addVertex(v2);
 		v1.addVertex(v3);
+		v1.addVertex(v2);
 		v3.addVertex(v4);
-		v4.addVertex(v5);
+		v2.addVertex(v5);
 		
 		list.add(v1);
 		list.add(v2);

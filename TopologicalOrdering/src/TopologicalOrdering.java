@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Stack;
 
 public class TopologicalOrdering {
@@ -8,7 +9,15 @@ public class TopologicalOrdering {
 		this.stack = new Stack<>();
 	}
 	
-	public void dfs(Vertex vertex){
+	public void dfs(List<Vertex> vertexList){
+		for(Vertex vertex : vertexList){
+			if(!vertex.isVisited()){
+				dfs(vertex);
+			}
+		}
+	}
+	
+	private void dfs(Vertex vertex){
 		vertex.setVisited(true);
 		
 		for(Vertex v:vertex.getNeighbourList()){
@@ -21,6 +30,13 @@ public class TopologicalOrdering {
 
 	public Stack<Vertex> getStack(){
 		return this.stack;
+	}
+	
+	public void showTopologicalOrdering(){
+		Stack<Vertex> tempStack = stack;
+		while(!tempStack.isEmpty()){
+			System.out.println(tempStack.pop()+"->");
+		}
 	}
 	
 }

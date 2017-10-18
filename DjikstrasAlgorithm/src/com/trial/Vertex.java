@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex implements Comparable<Vertex>{
-
+	
 	private String name;
 	private List<Edge> adjacentEdges;
+	private Vertex previousVertex;
 	private int distance = Integer.MAX_VALUE;
-	private Vertex previous;
-
+	
 	public Vertex(String name) {
 		this.name = name;
 		this.adjacentEdges = new ArrayList<>();
 	}
-
-	public void addNeighbour(Edge edge) {
-		this.adjacentEdges.add(edge);
-	}
-
+	
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+	public void addNeighbour(Edge edge){
+		this.adjacentEdges.add(edge);
 	}
 
 	public String getName() {
@@ -40,6 +40,14 @@ public class Vertex implements Comparable<Vertex>{
 		this.adjacentEdges = adjacentEdges;
 	}
 
+	public Vertex getPreviousVertex() {
+		return previousVertex;
+	}
+
+	public void setPreviousVertex(Vertex previousVertex) {
+		this.previousVertex = previousVertex;
+	}
+
 	public int getDistance() {
 		return distance;
 	}
@@ -48,18 +56,10 @@ public class Vertex implements Comparable<Vertex>{
 		this.distance = distance;
 	}
 
-	public Vertex getPrevious() {
-		return previous;
-	}
-
-	public void setPrevious(Vertex previous) {
-		this.previous = previous;
-	}
-
 	@Override
-	public int compareTo(Vertex otherVertex) {
-		// TODO Auto-generated method stub
-		return this.distance-otherVertex.getDistance();
+	public int compareTo(Vertex o) {
+		
+		return this.distance-o.getDistance();
 	}
 
 }

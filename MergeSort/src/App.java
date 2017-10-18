@@ -10,8 +10,8 @@ public class App {
 		}
 		
 		MergeSort mergeSort = new MergeSort(nums);
-		mergeSort.mergeSort(0, nums.length-1);
-		mergeSort.showResult();
+
+		mergeSort.show();
 
 	}
 

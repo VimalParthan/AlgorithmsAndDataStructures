@@ -4,33 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
-	
-	private String data;
+
+	private String name;
+	private List<Vertex> adjacentVertices;
 	private boolean visited;
 	private boolean beingVisited;
-	private List<Vertex> adjacenciesList;
-	
-	public Vertex(String data){
-		this.data = data;
-		this.adjacenciesList = new ArrayList<>();
+
+	public Vertex(String name) {
+
+		this.name = name;
+		this.adjacentVertices = new ArrayList<>();
 	}
-	
-	public void addNeighbour(Vertex vertex){
-		this.adjacenciesList.add(vertex);
+
+	public void addNeighbour(Vertex vertex) {
+		this.adjacentVertices.add(vertex);
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return this.data;
-	}
-	
-	public String getData() {
-		return data;
+		return this.name;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Vertex> getAdjacentVertices() {
+		return adjacentVertices;
+	}
+
+	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
+		this.adjacentVertices = adjacentVertices;
 	}
 
 	public boolean isVisited() {
@@ -48,15 +56,5 @@ public class Vertex {
 	public void setBeingVisited(boolean beingVisited) {
 		this.beingVisited = beingVisited;
 	}
-
-	public List<Vertex> getAdjacenciesList() {
-		return adjacenciesList;
-	}
-
-	public void setAdjacenciesList(List<Vertex> adjacenciesList) {
-		this.adjacenciesList = adjacenciesList;
-	}
-	
-	
 
 }

@@ -18,11 +18,12 @@ public class App {
 		
 		vertex0.addNeighbour(new Edge(vertex0,vertex1,1));
 		vertex0.addNeighbour(new Edge(vertex0,vertex2,10));
-		vertex0.addNeighbour(new Edge(vertex1,vertex2,1));
+		vertex0.addNeighbour(new Edge(vertex1,vertex2,8));
 	
 		AcyclicShortestPath acyclicShortestPath = new AcyclicShortestPath();
-		acyclicShortestPath.acyclicAlgo(vertexList, vertex0, vertex2);
-		acyclicShortestPath.showShortestPath(vertex2);
+		acyclicShortestPath.acyclicShortesPath(vertexList, vertex0);
+		acyclicShortestPath.shortestPathTo(vertex2);
+		System.out.println(vertex2.getDistance());
 	
 	}
 

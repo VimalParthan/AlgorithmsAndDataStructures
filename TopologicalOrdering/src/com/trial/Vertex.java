@@ -14,6 +14,12 @@ public class Vertex {
 		this.adjacencyList = new ArrayList<>();
 	}
 	
+	@Override
+	public String toString() {
+	
+		return this.data;
+	}
+	
 	public String getData() {
 		return data;
 	}
@@ -30,7 +36,7 @@ public class Vertex {
 		return adjacencyList;
 	}
 
-	public void addVertex(Vertex vertex){
+	public void addNeighbour(Vertex vertex){
 		this.adjacencyList.add(vertex);
 	}
 	

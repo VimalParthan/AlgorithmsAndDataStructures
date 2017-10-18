@@ -3,29 +3,36 @@ package com.trial;
 public class Edge {
 	
 	private Vertex startVertex;
-	private Vertex endVertex;
+	private Vertex targetvertex;
 	private int weight;
-	public Edge(Vertex startVertex, Vertex endVertex, int weight) {
+	
+	public Edge(Vertex startVertex, Vertex targetvertex, int weight) {
 		super();
 		this.startVertex = startVertex;
-		this.endVertex = endVertex;
+		this.targetvertex = targetvertex;
 		this.weight = weight;
 	}
+
 	public Vertex getStartVertex() {
 		return startVertex;
 	}
+
 	public void setStartVertex(Vertex startVertex) {
 		this.startVertex = startVertex;
 	}
-	public Vertex getEndVertex() {
-		return endVertex;
+
+	public Vertex getTargetvertex() {
+		return targetvertex;
 	}
-	public void setEndVertex(Vertex endVertex) {
-		this.endVertex = endVertex;
+
+	public void setTargetvertex(Vertex targetvertex) {
+		this.targetvertex = targetvertex;
 	}
+
 	public int getWeight() {
 		return weight;
 	}
+
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}

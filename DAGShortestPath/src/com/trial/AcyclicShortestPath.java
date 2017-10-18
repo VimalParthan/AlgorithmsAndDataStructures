@@ -5,22 +5,21 @@ import java.util.Stack;
 
 public class AcyclicShortestPath {
 	
-	public boolean acyclicAlgo(List<Vertex> vertexList,Vertex startVertex,Vertex targetVertex){
-		
+	public void acyclicShortesPath(List<Vertex> vertexList,Vertex startVertex){
 		startVertex.setDistance(0);
-		TopologicalOrder topologicalOrder = new TopologicalOrder();
-		topologicalOrder.topologicalOrder(vertexList);
 		
-		Stack<Vertex> vertexStack = topologicalOrder.getTopologicalOrder();
+		TopologicalOrdering topologicalOrdering = new TopologicalOrdering();
+		
+		topologicalOrdering.topologicaloder(vertexList);
+		
+		Stack<Vertex> vertexStack = topologicalOrdering.getVertexStack();
 		
 		for(Vertex vertex : vertexStack){
-			for(Edge edge: vertex.getAdjacentEdges()){
+			for(Edge edge: vertex.getAdjacentEdge()){
 				
-				Vertex u = edge.getStartvertex();
-				Vertex v = edge.getEndVertex();
+				Vertex u = edge.getStartVertex();
+				Vertex v = edge.getTargetVertex();
 				
-				if(u.getDistance()==Double.MAX_VALUE)continue;
-					
 				double newDistance = u.getDistance()+edge.getWeight();
 				
 				if(newDistance<v.getDistance()){
@@ -30,27 +29,18 @@ public class AcyclicShortestPath {
 				
 			}
 		}
-		
-		if(targetVertex.getDistance()!=Double.MAX_VALUE){
-			System.out.println("Shortest path is : "+targetVertex.getDistance());
-			return true;
-		}else{
-			System.out.println("No Path found");
-			return false;
-		}
-		
 	}
 	
-	public void showShortestPath(Vertex targetVertex){
+	public void shortestPathTo(Vertex vertex){
+		Stack<Vertex> shortestPath = new Stack<>();
 		
-		Stack<Vertex> vertexStack = new Stack<>();
-		
-		for(Vertex vertex = targetVertex;vertex!=null;vertex = vertex.getPreviousVertex()){
-			vertexStack.push(vertex);
+		while(vertex!=null){
+			shortestPath.push(vertex);
+			vertex=vertex.getPreviousVertex();
 		}
 		
-		while(!vertexStack.isEmpty()){
-			System.out.print(vertexStack.pop()+"->");
+		while(!shortestPath.isEmpty()){
+			System.out.println(shortestPath.pop());
 		}
 		
 	}

@@ -20,7 +20,7 @@ public class App {
 		vertex0.addNeighbour(new Edge(1,vertex1,vertex2));
 	
 		AcyclicShortestPath acyclicShortestPath = new AcyclicShortestPath();
-		acyclicShortestPath.shortestPath(vertexList, vertex0, vertex2);
+		acyclicShortestPath.shortestPath(vertexList, vertex0);
 		acyclicShortestPath.shortestPathTo(vertex2);
 	
 	}

@@ -2,73 +2,63 @@
 public class MergeSort {
 	
 	private int [] nums;
-	private int [] tempArray;
 	
-	public MergeSort(int[] nums){
+	private int [] temp;
+	
+	public MergeSort(int [] nums){
 		this.nums = nums;
-		tempArray = new int[nums.length];
+		this.temp = new int [nums.length]; 
+		mergeSort(0,nums.length-1);
 	}
-
-	public void mergeSort(int low,int high){
+	
+	private void mergeSort(int low,int high){
+		
 		if(low>=high){
 			return;
 		}
-		int middle = (low+high)/2;
 		
-		mergeSort(low, middle);
-		mergeSort(middle+1, high);
-		merge(low,middle,high);
+		int mid = (low+high)/2;
 		
+		mergeSort(low,mid);
+		mergeSort(mid+1,high);
+		merge(low,mid,high);
 	}
 	
-	public void showResult(){
-		for(int i=0;i<nums.length;i++){
-			System.out.println(nums[i]+" ");
-		}
-	}
-	
-	private void merge(int low,int middle,int high){
+	private void merge(int low,int mid,int high){
 		
 		for(int i=low;i<=high;i++){
-			tempArray[i]=nums[i];
+			temp[i]=nums[i];
 		}
 		
-		int i=low;
-		int j=middle+1;
-		int k=low;
+		int i = low;
+		int j = mid+1;
+		int k = low;
 		
-		
-		while((i<=middle)&&(j<=high)){
-			if(tempArray[i]<=tempArray[j]){
-				nums[k]=tempArray[i];
+		while(i<=mid&&j<=high){
+			if(temp[i]<=temp[j]){
+				nums[k]=temp[i];
 				i++;
 			}else{
-				nums[k]=tempArray[j];
+				nums[k]=temp[j];
 				j++;
 			}
 			k++;
 		}
 		
-		while(i<=middle){
-			nums[k]=tempArray[i];
-			k++;
-			i++;
+		while(i<=mid){
+			nums[k]=temp[i];
+			k++;i++;
 		}
-		
-		
 		while(j<=high){
-			nums[k]=tempArray[j];
-			k++;
-			j++;
+			nums[k]=temp[j];
+			j++;k++;
 		}
 	}
 	
-	public boolean isSorted(){
-		for(int i=0;i<nums.length-1;i++){
-			if(nums[i]>nums[i+1]){
-				return false;
-			}
+	public void show(){
+		for(int i:nums){
+			System.out.println(i);
 		}
-		return true;
 	}
+	
 }

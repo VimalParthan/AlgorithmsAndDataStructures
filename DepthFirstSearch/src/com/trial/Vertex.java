@@ -5,47 +5,43 @@ import java.util.List;
 
 public class Vertex {
 	
-	private String data;
+	private String name;
+	private List<Vertex> adjacentVertices;
 	private boolean visited;
-	private List<Vertex> adjacencyList;
 	
-	public Vertex(String data) {
-
-		this.data = data;
-		this.adjacencyList = new ArrayList<>();
+	public void addVertex(Vertex vertex){
+		this.adjacentVertices.add(vertex);
+	}
+	
+	public Vertex(String name) {
+		super();
+		this.name = name;
+		this.adjacentVertices = new ArrayList<>();
 	}
 
-	public String getData() {
-		return data;
+	@Override
+	public String toString() {
+	
+		return this.name;
 	}
-
-	public void setData(String data) {
-		this.data = data;
+	
+	public String getName() {
+		return name;
 	}
-
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Vertex> getAdjacentVertices() {
+		return adjacentVertices;
+	}
+	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
+		this.adjacentVertices = adjacentVertices;
+	}
 	public boolean isVisited() {
 		return visited;
 	}
-
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
 
-	public List<Vertex> getAdjacencyList() {
-		return adjacencyList;
-	}
-
-	public void setAdjacencyList(List<Vertex> adjacencyList) {
-		this.adjacencyList = adjacencyList;
-	}
-	
-	public void addVertex(Vertex vertex){
-		this.adjacencyList.add(vertex);
-	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return data;
-	}
 }
