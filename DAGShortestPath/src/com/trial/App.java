@@ -21,7 +21,7 @@ public class App {
 		vertex0.addNeighbour(new Edge(vertex1,vertex2,8));
 	
 		AcyclicShortestPath acyclicShortestPath = new AcyclicShortestPath();
-		acyclicShortestPath.acyclicShortesPath(vertexList, vertex0);
+		acyclicShortestPath.dagShortestPath(vertexList, vertex0);
 		acyclicShortestPath.shortestPathTo(vertex2);
 		System.out.println(vertex2.getDistance());
 	

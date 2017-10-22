@@ -35,7 +35,7 @@ public class App {
 		
 		
 		PrimsAlgorithm algorithm = new PrimsAlgorithm(graph);
-		algorithm.spanningTree();
+		algorithm.primsAlgorithm();
 		algorithm.showMST();
 
 	}

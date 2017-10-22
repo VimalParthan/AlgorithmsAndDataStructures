@@ -15,9 +15,9 @@ public class App {
 		}
 		
 		MergeSort mergeSort = new MergeSort(nums);
+		
+		mergeSort.mergeSort();
 
-		mergeSort.mergeSort(0, nums.length-1);
-		System.out.println(mergeSort.isSorted());
 		mergeSort.display();
 	}
 

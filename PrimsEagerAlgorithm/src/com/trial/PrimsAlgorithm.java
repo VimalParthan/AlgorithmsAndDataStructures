@@ -1,45 +1,48 @@
 package com.trial;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
 public class PrimsAlgorithm {
+
 	
-	private List<Vertex> vertices;
+	private List<Vertex> vertexList;
 	private PriorityQueue<Vertex> minHeap;
+	private double totalSpan;
 	
+
 	public PrimsAlgorithm(Graph graph) {
-		super();
-		this.vertices = graph.getVertexList();
-		this.minHeap = new PriorityQueue<>();
+		vertexList = graph.getVertexList();
+		minHeap = new PriorityQueue<>();
 	}
 	
-	public void spanningTree(){
-		
-		for(Vertex vertex: vertices){
+	public void primsAlgorithm(){
+	
+		for(Vertex vertex :vertexList){
 			if(!vertex.isVisited()){
-				makePrim(vertex);
+				makePrims(vertex);
 			}
 		}
-	}
-	
-	private void makePrim(Vertex vertex){
 		
+	}  
+	
+	private void makePrims(Vertex vertex){
 		vertex.setDistance(0);
 		minHeap.add(vertex);
 		while(!minHeap.isEmpty()){
-			scanVertices(minHeap.remove());
+			Vertex v=minHeap.remove();
+			scanVertex(v);
 		}
-		
 	}
 	
-	private void scanVertices(Vertex vertex){
+	private void scanVertex(Vertex vertex){
 		vertex.setVisited(true);
 		
-		for(Edge edge :vertex.getAdjacentEdges()){
+		for(Edge edge:vertex.getAdjacentEdges()){
 			Vertex w = edge.getTargetVertex();
 			
-			if(w.isVisited())continue;
+			if(w.isVisited()) continue;
 			
 			if(edge.getWeight()<w.getDistance()){
 				w.setMinEdge(edge);
@@ -49,13 +52,15 @@ public class PrimsAlgorithm {
 			if(minHeap.contains(w)){
 				minHeap.remove(w);
 			}
-			
 			minHeap.add(w);
 		}
+		
+		
 	}
 	
 	public void showMST(){
-		for(Vertex vertex:vertices){
+		
+		for(Vertex vertex: vertexList){
 			if(vertex.getMinEdge()!=null){
 				System.out.println(vertex.getMinEdge().getStartVertex()+"-"+vertex.getMinEdge().getTargetVertex());
 			}

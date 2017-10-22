@@ -4,28 +4,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class TopologicalOrdering {
+public class TopologicalOrder {
 	
 	private Stack<Vertex> vertexStack;
 	
-	public TopologicalOrdering(){
-		this.vertexStack = new Stack<>();
-	}
-	
-	public void topologicaloder(List<Vertex> vertexList){
+	public void topologicalOrder(List<Vertex> vertexList){
+		vertexStack=new Stack<>();
 		for(Vertex vertex:vertexList){
-			if(!vertex.isVisited()){
+			if(!vertex.isVisited())
 				dfs(vertex);
-			}
 		}
 	}
 	
-	public void dfs(Vertex vertex){
+	private void dfs(Vertex vertex){
 		vertex.setVisited(true);
-		for(Edge edge:vertex.getAdjacentEdge()){
+		for(Edge edge:vertex.getAdjacentEdges()){
 			if(!edge.getTargetVertex().isVisited()){
-				edge.getTargetVertex().setVisited(true);
-				dfs(vertex);
+			
+				dfs(edge.getTargetVertex());
 			}
 		}
 		vertexStack.push(vertex);

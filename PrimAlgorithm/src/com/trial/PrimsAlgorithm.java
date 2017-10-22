@@ -5,43 +5,48 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class PrimsAlgorithm {
+	
 	private List<Vertex> unvisitedVertices;
-	private List<Edge>spanningTree;
-	private PriorityQueue<Edge> edgeHeap;
+	private List<Edge> mst;
+	private PriorityQueue<Edge> minHeap;
+	private double totalSpan;
 	
-	private double fullCost;
-	
-	public PrimsAlgorithm(List<Vertex> unvisitedList){
-		this.spanningTree = new ArrayList<>();
-		this.unvisitedVertices = unvisitedList;
-		this.edgeHeap = new PriorityQueue<>();
+	public PrimsAlgorithm(List<Vertex> vertexList) {
+		
+		unvisitedVertices = vertexList;
+		mst = new ArrayList<>();
+		minHeap = new PriorityQueue<>();
 	}
 	
-	public void primsAlgorithm(Vertex vertex){
-		this.unvisitedVertices.remove(vertex);
-		while(!unvisitedVertices.isEmpty()){
-			for(Edge edge:vertex.getAdjacentEdges()){
 	
-				if(this.unvisitedVertices.contains(edge.getTargetVertex())){
-			
-					this.edgeHeap.add(edge);
+	public void primsAlgorithm(Vertex vertex){
+		
+		unvisitedVertices.remove(vertex);
+		
+		while(!unvisitedVertices.isEmpty()){
+			for(Edge edge:vertex.getAdjacentEdges()){	
+				
+				if(unvisitedVertices.contains(edge.getTargetVertex())){
+	
+					minHeap.add(edge);
 				}
+				
 			}
 			
-			Edge minEdge = this.edgeHeap.remove();
-			this.spanningTree.add(minEdge);
-			this.fullCost+=minEdge.getWeight();
-			
+			Edge minEdge = minHeap.remove();
+			mst.add(minEdge);
+			totalSpan+=minEdge.getWeight();	
 			vertex = minEdge.getTargetVertex();
-			this.unvisitedVertices.remove(vertex);
-		
+			unvisitedVertices.remove(vertex);
 		}
+		
 	}
 	
 	public void showMST(){
-		
-		System.out.println("The minimum spanning tree cost:"+this.fullCost);
-		for(Edge edge :spanningTree)
+		System.out.println(totalSpan);
+		for(Edge edge:mst){
 			System.out.println(edge.getStartVertex()+"-"+edge.getTargetVertex());
+		}
 	}
+
 }

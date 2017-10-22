@@ -4,26 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
-	
-	private String name;
-	private boolean visited;
-	private List<Vertex> adjacentVertices;
 
-	public Vertex(String name) {
-		super();
-		this.name = name;
-		this.adjacentVertices = new ArrayList<>();
-	}
-	
-	public void addVertex(Vertex vertex){
-		this.adjacentVertices.add(vertex);
-	}
-	
-	@Override
-	public String toString() {
-		
-		return this.name;
-	}
+	private String name;
+	private List<Vertex> adjacentVertex;
+	private boolean visited;
 
 	public String getName() {
 		return name;
@@ -31,6 +15,14 @@ public class Vertex {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Vertex> getAdjacentVertex() {
+		return adjacentVertex;
+	}
+
+	public void setAdjacentVertex(List<Vertex> adjacentVertex) {
+		this.adjacentVertex = adjacentVertex;
 	}
 
 	public boolean isVisited() {
@@ -41,13 +33,19 @@ public class Vertex {
 		this.visited = visited;
 	}
 
-	public List<Vertex> getAdjacentVertices() {
-		return adjacentVertices;
-	}
-
-	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
-		this.adjacentVertices = adjacentVertices;
+	public Vertex(String name) {
+		super();
+		this.name = name;
+		this.adjacentVertex = new ArrayList<>();
 	}
 	
+	public void addVertex(Vertex vertex){
+		this.adjacentVertex.add(vertex);
+	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name;
+	}
 }

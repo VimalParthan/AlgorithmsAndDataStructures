@@ -5,14 +5,6 @@ public class Edge {
 	private Vertex startVertex;
 	private Vertex targetVertex;
 	private double weight;
-	
-	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
-		super();
-		this.startVertex = startVertex;
-		this.targetVertex = targetVertex;
-		this.weight = weight;
-	}
-	
 	public Vertex getStartVertex() {
 		return startVertex;
 	}
@@ -31,5 +23,13 @@ public class Edge {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
+		super();
+		this.startVertex = startVertex;
+		this.targetVertex = targetVertex;
+		this.weight = weight;
+	}
 	
+	
+
 }

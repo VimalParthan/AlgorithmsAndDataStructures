@@ -4,28 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-
+	
 	private List<Vertex> vertexList;
-	private List<Edge> edgeList;
-
-	public Graph() {
-		super();
-		this.vertexList = new ArrayList<>();
-		this.edgeList = new ArrayList<>();
+	
+	public Graph(){
+		vertexList = new ArrayList<>();
 	}
-
-	public void addEdge(Edge edge) {
-
-		Vertex startVertex = edge.getStartVertex();
+	
+	public void addVertex(Vertex vertex){
+		vertexList.add(vertex);
+	}
+	
+	public void addEdge(Edge edge){
+		Vertex startVertex =edge.getStartVertex();
 		Vertex targetVertex = edge.getTargetVertex();
-
-		vertexList.get(vertexList.indexOf(startVertex)).addEdge(new Edge(startVertex, targetVertex, edge.getWeight()));
-		vertexList.get(vertexList.indexOf(targetVertex)).addEdge(new Edge(targetVertex, startVertex, edge.getWeight()));
-
-	}
-
-	public void addVertex(Vertex vertex) {
-		this.vertexList.add(vertex);
+		
+		vertexList.get(vertexList.indexOf(startVertex)).addEdge(new Edge(startVertex,targetVertex,edge.getWeight()));
+		vertexList.get(vertexList.indexOf(targetVertex)).addEdge(new Edge(targetVertex,startVertex,edge.getWeight()));
 	}
 
 	public List<Vertex> getVertexList() {
@@ -35,13 +30,6 @@ public class Graph {
 	public void setVertexList(List<Vertex> vertexList) {
 		this.vertexList = vertexList;
 	}
-
-	public List<Edge> getEdgeList() {
-		return edgeList;
-	}
-
-	public void setEdgeList(List<Edge> edgeList) {
-		this.edgeList = edgeList;
-	}
-
+	
+	
 }

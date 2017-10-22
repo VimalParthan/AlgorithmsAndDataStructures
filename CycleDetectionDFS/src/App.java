@@ -18,7 +18,7 @@ public class App {
 		vertex4.addNeighbour(vertex1);
 		vertex4.addNeighbour(vertex5);
 		vertex5.addNeighbour(vertex6);
-//		vertex6.addNeighbour(vertex4);
+		vertex6.addNeighbour(vertex4);
 		
 		List<Vertex> vertexList = new ArrayList<>();
 		vertexList.add(vertex1);

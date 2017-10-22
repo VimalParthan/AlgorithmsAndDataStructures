@@ -6,23 +6,14 @@ import java.util.List;
 public class Vertex {
 
 	private String name;
-	private List<Vertex> adjacentVertices;
+	private List<Vertex> adjacentVertex;
 	private boolean visited;
 	private boolean beingVisited;
 
 	public Vertex(String name) {
-
+		super();
 		this.name = name;
-		this.adjacentVertices = new ArrayList<>();
-	}
-
-	public void addNeighbour(Vertex vertex) {
-		this.adjacentVertices.add(vertex);
-	}
-
-	@Override
-	public String toString() {
-		return this.name;
+		this.adjacentVertex = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -33,12 +24,12 @@ public class Vertex {
 		this.name = name;
 	}
 
-	public List<Vertex> getAdjacentVertices() {
-		return adjacentVertices;
+	public List<Vertex> getAdjacentVertex() {
+		return adjacentVertex;
 	}
 
-	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
-		this.adjacentVertices = adjacentVertices;
+	public void setAdjacentVertex(List<Vertex> adjacentVertex) {
+		this.adjacentVertex = adjacentVertex;
 	}
 
 	public boolean isVisited() {
@@ -55,6 +46,16 @@ public class Vertex {
 
 	public void setBeingVisited(boolean beingVisited) {
 		this.beingVisited = beingVisited;
+	}
+	
+	public void addNeighbour(Vertex vertex){
+		this.adjacentVertex.add(vertex);
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name;
 	}
 
 }

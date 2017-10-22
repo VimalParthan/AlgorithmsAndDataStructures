@@ -7,59 +7,56 @@ public class Vertex implements Comparable<Vertex>{
 	
 	private String name;
 	private List<Edge> adjacentEdges;
-	private Vertex previousVertex;
 	private int distance = Integer.MAX_VALUE;
+	private Vertex previosVertex;
 	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Edge> getAdjacentEdges() {
+		return adjacentEdges;
+	}
+	public void setAdjacentEdges(List<Edge> adjacentEdges) {
+		this.adjacentEdges = adjacentEdges;
+	}
+	public int getDistance() {
+		return distance;
+	}
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
 	public Vertex(String name) {
+
 		this.name = name;
 		this.adjacentEdges = new ArrayList<>();
-	}
-	
-	@Override
-	public String toString() {
-		return this.name;
 	}
 	
 	public void addNeighbour(Edge edge){
 		this.adjacentEdges.add(edge);
 	}
-
-	public String getName() {
-		return name;
+	
+	
+	
+	public Vertex getPreviosVertex() {
+		return previosVertex;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setPreviosVertex(Vertex previosVertex) {
+		this.previosVertex = previosVertex;
 	}
-
-	public List<Edge> getAdjacentEdges() {
-		return adjacentEdges;
+	@Override
+	public String toString() {
+		return this.name;
 	}
-
-	public void setAdjacentEdges(List<Edge> adjacentEdges) {
-		this.adjacentEdges = adjacentEdges;
-	}
-
-	public Vertex getPreviousVertex() {
-		return previousVertex;
-	}
-
-	public void setPreviousVertex(Vertex previousVertex) {
-		this.previousVertex = previousVertex;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
-
 	@Override
 	public int compareTo(Vertex o) {
-		
-		return this.distance-o.getDistance();
+		// TODO Auto-generated method stub
+		return Integer.compare(this.distance, o.getDistance());
 	}
+	
 
 }

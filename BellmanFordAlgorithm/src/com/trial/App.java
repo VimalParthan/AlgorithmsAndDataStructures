@@ -24,11 +24,11 @@ public class App {
 		edgeList.add(new Edge(vertexList.get(0),vertexList.get(4),3));
 		edgeList.add(new Edge(vertexList.get(3),vertexList.get(0),3));
 			
-		BellmanFordAlgorithm bellmanFord = new BellmanFordAlgorithm(vertexList, edgeList);
+		BellmanFordAlgorithm bellmanFord = new BellmanFordAlgorithm();
 	
 		boolean hasNegativeCycle;
 		
-		hasNegativeCycle=bellmanFord.bellmanFordAlgoritm(vertexList.get(0));
+		hasNegativeCycle=bellmanFord.bellmanFordAlgorithm(vertexList, edgeList,vertexList.get(0));
 		
 		if(!hasNegativeCycle)
 		bellmanFord.shortestPathTo(vertexList.get(4));

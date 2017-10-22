@@ -8,7 +8,7 @@ public class App {
 	public static void main(String[] args) {
 		
 
-		TopologicalOrdering topologicalOrdering = new TopologicalOrdering();
+		TopologicalOrder topologicalOrdering = new TopologicalOrder();
 		List<Vertex> graph = new ArrayList<>();
 
 		graph.add(new Vertex("0"));
@@ -25,9 +25,9 @@ public class App {
 		graph.get(4).addNeighbour(graph.get(0));
 		graph.get(4).addNeighbour(graph.get(1));
 
-		topologicalOrdering.dfs(graph);
+		topologicalOrdering.topologicalOrder(graph);
 
-		topologicalOrdering.showTopologicalOrdering();
+		topologicalOrdering.showTopologicalOrder();
 		
 	}
 

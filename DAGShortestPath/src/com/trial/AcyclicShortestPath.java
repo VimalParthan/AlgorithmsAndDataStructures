@@ -5,24 +5,20 @@ import java.util.Stack;
 
 public class AcyclicShortestPath {
 	
-	public void acyclicShortesPath(List<Vertex> vertexList,Vertex startVertex){
+	public void dagShortestPath(List<Vertex> vertexList,Vertex startVertex){
 		startVertex.setDistance(0);
-		
-		TopologicalOrdering topologicalOrdering = new TopologicalOrdering();
-		
-		topologicalOrdering.topologicaloder(vertexList);
-		
-		Stack<Vertex> vertexStack = topologicalOrdering.getVertexStack();
+		TopologicalOrder topologicalOrder = new TopologicalOrder();
+		topologicalOrder.topologicalOrder(vertexList);
+		Stack<Vertex> vertexStack= topologicalOrder.getVertexStack();
 		
 		for(Vertex vertex : vertexStack){
-			for(Edge edge: vertex.getAdjacentEdge()){
-				
+			for(Edge edge:vertex.getAdjacentEdges()){
 				Vertex u = edge.getStartVertex();
 				Vertex v = edge.getTargetVertex();
 				
 				double newDistance = u.getDistance()+edge.getWeight();
 				
-				if(newDistance<v.getDistance()){
+				if(v.getDistance()>newDistance){
 					v.setDistance(newDistance);
 					v.setPreviousVertex(u);
 				}
@@ -36,13 +32,12 @@ public class AcyclicShortestPath {
 		
 		while(vertex!=null){
 			shortestPath.push(vertex);
-			vertex=vertex.getPreviousVertex();
+			vertex= vertex.getPreviousVertex();
 		}
 		
 		while(!shortestPath.isEmpty()){
 			System.out.println(shortestPath.pop());
 		}
-		
 	}
 
 }

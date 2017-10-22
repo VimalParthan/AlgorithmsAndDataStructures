@@ -5,34 +5,29 @@ import java.util.List;
 
 public class DisjointSet {
 	
-	private int setCount;
-	private int nodeCount;
 	private List<Node> rootNodes;
+	private int nodeCount;
+	private int setCount;
+	List<Vertex> vertexList;
 	
-	public DisjointSet(List<Vertex> vertices){
-		this.rootNodes=new ArrayList<>(vertices.size());
-		makeSets(vertices);
+	public DisjointSet(List<Vertex> vertexList){
+		this.vertexList = vertexList;
+		this.rootNodes = new ArrayList<>();
+		makeSets(vertexList);
 	}
 	
-	public int find(Node n){
-		
-		Node currentNode = n;
-		
-		while(currentNode.getParent()!=null){
-			currentNode = currentNode.getParent();
+	public void makeSets(List<Vertex> vertexList){
+		for(Vertex vertex:vertexList){
+			makeSet(vertex);
+			
 		}
-		
-		Node rootNode = currentNode;
-		
-		currentNode=n;
-		
-		while(currentNode!=rootNode){
-			Node temp = currentNode.getParent();
-			currentNode.setParent(rootNode);
-			currentNode = temp;
-		}
-		
-		return rootNode.getIndex();
+	}
+	private void makeSet(Vertex vertex){
+		Node node = new Node(rootNodes.size(),0,null);
+		vertex.setNode(node);
+		rootNodes.add(node);
+		nodeCount++;
+		setCount++;
 	}
 	
 	public void join(Node n1,Node n2){
@@ -46,33 +41,35 @@ public class DisjointSet {
 		Node rootNode2 = rootNodes.get(index2);
 		
 		if(rootNode1.getRank()>rootNode2.getRank()){
-			rootNode2.setParent(rootNode1);
+			rootNode2.setPreviousNode(rootNode1);
 		}else if(rootNode2.getRank()>rootNode1.getRank()){
-			rootNode1.setParent(rootNode2);
+			rootNode1.setPreviousNode(rootNode2);
 		}else{
-			rootNode2.setParent(rootNode1);
+			rootNode2.setPreviousNode(rootNode1);
 			rootNode1.setRank(rootNode1.getRank()+1);
 		}
 		setCount--;
-	}
-	
-	private void makeSets(List<Vertex> vertices){
-		
-		for(Vertex vertex:vertices){
-			makeSet(vertex);
-		}
-	}
-	
-	private void makeSet(Vertex vertex){
-		
-		Node n = new Node(0,rootNodes.size(),null);
-		vertex.setNode(n);
-		
-		this.rootNodes.add(n);
-		this.setCount++;
-		this.nodeCount++;
-		
-	}
-	
 
+	}
+	
+	public int find(Node n){
+		
+		Node currentNode = n;
+		
+		while(currentNode.getPreviousNode()!=null){
+			currentNode=currentNode.getPreviousNode();
+		}
+		
+		Node rootNode = currentNode;
+		
+		currentNode=n;
+		
+		while(currentNode!=rootNode){
+			Node temp = currentNode.getPreviousNode();
+			currentNode.setPreviousNode(rootNode);
+			currentNode = temp;
+		}
+		
+		return rootNode.getIndex();
+	}
 }

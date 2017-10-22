@@ -6,30 +6,26 @@ import java.util.List;
 public class Vertex {
 	
 	private String name;
-	private List<Vertex> adjacentVertices;
 	private boolean visited;
+	private List<Vertex> adjacentVertices;
 	
-	public void addVertex(Vertex vertex){
-		this.adjacentVertices.add(vertex);
-	}
 	
 	public Vertex(String name) {
 		super();
 		this.name = name;
-		this.adjacentVertices = new ArrayList<>();
+		this.adjacentVertices =new ArrayList<>();
 	}
-
-	@Override
-	public String toString() {
-	
-		return this.name;
-	}
-	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public boolean isVisited() {
+		return visited;
+	}
+	public void setVisited(boolean visited) {
+		this.visited = visited;
 	}
 	public List<Vertex> getAdjacentVertices() {
 		return adjacentVertices;
@@ -37,11 +33,14 @@ public class Vertex {
 	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
 		this.adjacentVertices = adjacentVertices;
 	}
-	public boolean isVisited() {
-		return visited;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name;
 	}
-	public void setVisited(boolean visited) {
-		this.visited = visited;
+	
+	public void addNeighbour(Vertex vertex){
+		this.adjacentVertices.add(vertex);
 	}
 
 }

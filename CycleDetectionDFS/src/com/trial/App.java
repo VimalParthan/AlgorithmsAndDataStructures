@@ -32,6 +32,7 @@ public class App {
 		
 		CycleDetection cycleDetection = new CycleDetection();
 		cycleDetection.detectCycle(vertexList);
+		
 	}
 
 }
