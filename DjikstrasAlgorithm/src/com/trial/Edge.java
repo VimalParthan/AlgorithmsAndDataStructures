@@ -4,7 +4,7 @@ public class Edge {
 	
 	private Vertex startVertex;
 	private Vertex targetVertex;
-	private int weight;
+	private double weight;
 	public Vertex getStartVertex() {
 		return startVertex;
 	}
@@ -17,19 +17,18 @@ public class Edge {
 	public void setTargetVertex(Vertex targetVertex) {
 		this.targetVertex = targetVertex;
 	}
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public Edge(int weight,Vertex startVertex, Vertex targetVertex) {
+	public Edge( double weight,Vertex startVertex, Vertex targetVertex) {
 		super();
 		this.startVertex = startVertex;
 		this.targetVertex = targetVertex;
 		this.weight = weight;
 	}
-	
 	
 
 }

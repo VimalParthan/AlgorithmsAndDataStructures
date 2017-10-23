@@ -6,75 +6,65 @@ import java.util.List;
 
 public class SingleTour {
 	
-	private List<City> tour;
+	private List<City> tour = new ArrayList<>();
 	
-	private double distance;
-	
-	public SingleTour() {
+	public SingleTour(List<City> cityList) {
 		tour = new ArrayList<>();
-		generateSingleTrip();
-	}
-
-	public SingleTour(List<City> tour) {
-		this.tour=new ArrayList<>();
-		this.tour.addAll(tour);
-	}
-
-	private void generateSingleTrip() {
 		
-		for(int i=0;i<CityRepository.cityRepositorySize();i++){
-			tour.add(CityRepository.getCity(i));
-		}
+		this.tour.addAll(cityList);
+	}
+	
+	public SingleTour(){
+		tour = new ArrayList<>();
+	
+		tour.addAll(CityRepository.cityList);
 		
 		Collections.shuffle(tour);
 	}
 	
+	public void setCity(int index,City city){
+		tour.set(index, city);
+	}
+	
 	public double getDistance(){
 		
-		
-		double tourDistance=0;
+		double distance=0;
 		
 		for(int i=0;i<tour.size();i++){
+			City startCity = tour.get(i);
+			City targetCity;
 			
-			City fromCity = tour.get(i);
-			City destCity;
 			if(i<tour.size()-1){
-				destCity = tour.get(i+1);
+				targetCity = tour.get(i+1);
 			}else{
-				destCity=tour.get(0);
+				targetCity = tour.get(0);
 			}
-			tourDistance+=fromCity.ditanceTo(destCity);
+			
+			distance+=startCity.distanceTo(targetCity);
 		}
-		this.distance=tourDistance;
 		
 		return distance;
 	}
-	
-	public void setCity(int index,City city){
-		this.tour.set(index, city);
-		
-		this.distance=0;
-	}
-	
-	public List<City> getTour(){
-		return this.tour;
-	}
-	
-	public City getCity(int index){
-		return this.tour.get(index);
+
+	public List<City> getTour() {
+		return tour;
 	}
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		String s ="";
+		String s = "";
+		
 		for(int i=0;i<tour.size();i++){
-			s+=tour.get(i)+"-->";
+			s+=tour.get(i)+"--";
 		}
+		
 		s+=tour.get(0);
-		
 		return s;
-		
 	}
 
+	public City getCity(int index){
+		return this.tour.get(index);
+	}
+	
+	
 }

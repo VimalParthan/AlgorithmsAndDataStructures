@@ -8,20 +8,11 @@ public class Edge {
 	public Vertex getStartVertex() {
 		return startVertex;
 	}
-	public void setStartVertex(Vertex startVertex) {
-		this.startVertex = startVertex;
-	}
 	public Vertex getTargetVertex() {
 		return targetVertex;
 	}
-	public void setTargetVertex(Vertex targetVertex) {
-		this.targetVertex = targetVertex;
-	}
 	public double getWeight() {
 		return weight;
-	}
-	public void setWeight(double weight) {
-		this.weight = weight;
 	}
 	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
 		super();

@@ -7,9 +7,16 @@ public class Vertex {
 	
 	private String name;
 	private List<Edge> adjacentEdges;
-	private double distance =Double.MAX_VALUE;
-	private boolean visited;
+	private double distance = Double.MAX_VALUE;
 	private Vertex previousVertex;
+	private boolean visited;
+	
+	public boolean isVisited() {
+		return visited;
+	}
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
 	public String getName() {
 		return name;
 	}
@@ -28,12 +35,6 @@ public class Vertex {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	public boolean isVisited() {
-		return visited;
-	}
-	public void setVisited(boolean visited) {
-		this.visited = visited;
-	}
 	public Vertex getPreviousVertex() {
 		return previousVertex;
 	}
@@ -41,20 +42,18 @@ public class Vertex {
 		this.previousVertex = previousVertex;
 	}
 	public Vertex(String name) {
-		
+		super();
 		this.name = name;
-		this.adjacentEdges = new ArrayList<>();
+		this.adjacentEdges =new ArrayList<>();
 	}
+	
 	public void addNeighbour(Edge edge){
 		this.adjacentEdges.add(edge);
 	}
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.name;
 	}
-	
-	
-	
 
 }

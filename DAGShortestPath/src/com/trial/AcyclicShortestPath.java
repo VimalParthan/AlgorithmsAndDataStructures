@@ -4,40 +4,42 @@ import java.util.List;
 import java.util.Stack;
 
 public class AcyclicShortestPath {
-	
-	public void dagShortestPath(List<Vertex> vertexList,Vertex startVertex){
-		startVertex.setDistance(0);
-		TopologicalOrder topologicalOrder = new TopologicalOrder();
-		topologicalOrder.topologicalOrder(vertexList);
-		Stack<Vertex> vertexStack= topologicalOrder.getVertexStack();
+
+	public void dagAlgorithm(List<Vertex> vertexList,Vertex startVertex){
 		
-		for(Vertex vertex : vertexStack){
+		TopologicalOrdering topologicalOrdering = new TopologicalOrdering();
+		topologicalOrdering.dfs(vertexList);
+		startVertex.setDistance(0);
+		
+		List<Vertex> topologicalOrder = topologicalOrdering.getTopologicallyOrderedVertices();
+		
+		for(Vertex vertex:topologicalOrder){
 			for(Edge edge:vertex.getAdjacentEdges()){
-				Vertex u = edge.getStartVertex();
-				Vertex v = edge.getTargetVertex();
+				Vertex v = edge.getStartVertex();
+				Vertex u = edge.getTargetVertex();
 				
-				double newDistance = u.getDistance()+edge.getWeight();
+				double newDistance = v.getDistance()+edge.getWeight();
 				
-				if(v.getDistance()>newDistance){
-					v.setDistance(newDistance);
-					v.setPreviousVertex(u);
+				if(newDistance<u.getDistance()){
+					u.setDistance(newDistance);
+					u.setPreviousVertex(v);
 				}
 				
 			}
 		}
-	}
+		
+	}	
 	
 	public void shortestPathTo(Vertex vertex){
 		Stack<Vertex> shortestPath = new Stack<>();
-		
 		while(vertex!=null){
 			shortestPath.push(vertex);
-			vertex= vertex.getPreviousVertex();
+			vertex = vertex.getPreviousVertex();
 		}
 		
 		while(!shortestPath.isEmpty()){
 			System.out.println(shortestPath.pop());
 		}
 	}
-
+	
 }

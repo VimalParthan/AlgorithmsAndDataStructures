@@ -4,21 +4,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
-
+	
 	private String name;
-	private List<Vertex> adjacentVertices;
+	private List<Vertex> vertex;
 	private boolean visited;
 	private int index;
 	private int componentId;
 	
+	@Override
+	public String toString() {
 	
-
-	public int getComponentId() {
-		return componentId;
+		return this.name;
 	}
-
-	public void setComponentId(int componentId) {
-		this.componentId = componentId;
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Vertex> getVertex() {
+		return vertex;
+	}
+	public void setVertex(List<Vertex> vertex) {
+		this.vertex = vertex;
+	}
+	public boolean isVisited() {
+		return visited;
+	}
+	public Vertex(int index,String name) {
+		
+		this.name = name;
+		this.vertex = new ArrayList<>();
+		this.index = index;
+	}
+	public void setVisited(int index,boolean visited) {
+		this.visited = visited;
+		this.index = index;
+	}
+	
+	public void addVertex(Vertex vertex){
+		this.vertex.add(vertex);
 	}
 
 	public int getIndex() {
@@ -29,44 +57,20 @@ public class Vertex {
 		this.index = index;
 	}
 
-	public boolean isVisited() {
-		return visited;
-	}
-
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public int getComponentId() {
+		return componentId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public List<Vertex> getAdjacentVertices() {
-		return adjacentVertices;
-	}
 
-	public void setAdjacentVertices(List<Vertex> adjacentVertices) {
-		this.adjacentVertices = adjacentVertices;
-	}
-
-	public Vertex(int index,String name) {
-		super();
-		this.name = name;
-		this.adjacentVertices = new ArrayList<>();
-		this.index = index;
-	}
-
-	@Override
-	public String toString() {
-		return this.name;
-	}
-
-	public void addVertex(Vertex vertex) {
-		this.adjacentVertices.add(vertex);
+	public void setComponentId(int componentId) {
+		this.componentId = componentId;
 	}
 
 }

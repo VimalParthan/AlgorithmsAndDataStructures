@@ -4,39 +4,46 @@ import java.util.List;
 
 public class KosarajuAlgorithm {
 	
-	private boolean []marked;
-	private int componentCount;
+	private boolean [] visited;
+	private int count;
 	
-	public KosarajuAlgorithm(Graph graph){
-		marked = new boolean [graph.getVertexList().size()];
+
+	
+	public  KosarajuAlgorithm(Graph graph){
 		
-		DepthFirstOrder depthFirstOrder = new DepthFirstOrder();
-		depthFirstOrder.dfs(graph.transpose());
-		List<Vertex> vertexList = depthFirstOrder.getVertexList();
 		
-		for(Vertex vertex :vertexList){
-			if(!marked[vertex.getIndex()]){
+		visited = new boolean[graph.getVertexList().size()];
+		
+		DepthFirstOrder dfs = new DepthFirstOrder();
+		
+		dfs.dfs(graph.transpose().getVertexList());
+		
+		List<Vertex> dfsVertexes = dfs.getVertexList();
+		
+		for(Vertex vertex:dfsVertexes){
+			if(!visited[vertex.getIndex()]){
 				dfs(vertex);
-				componentCount++;
+				count++;
 			}
+			
 		}
+
 	}
-	
-	private void dfs(Vertex vertex){
-		marked[vertex.getIndex()]=true;
-		vertex.setComponentId(componentCount);
-		for(Vertex v:vertex.getAdjacentVertices()){
-			if(!marked[v.getIndex()]){
+
+	private void dfs(Vertex vertex) {
+		visited[vertex.getIndex()]=true;
+		vertex.setComponentId(count);
+		
+		for(Vertex v: vertex.getVertex()){
+			if(!visited[v.getIndex()])
 				dfs(v);
-			}
 		}
+			
 	}
 
 	public int getCount() {
-		return componentCount;
+		return count;
 	}
-	
-
 	
 
 }

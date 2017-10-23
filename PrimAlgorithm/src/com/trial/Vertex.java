@@ -7,7 +7,6 @@ public class Vertex {
 	
 	private String name;
 	private List<Edge> adjacentEdges;
-
 	public String getName() {
 		return name;
 	}
@@ -17,23 +16,23 @@ public class Vertex {
 	public List<Edge> getAdjacentEdges() {
 		return adjacentEdges;
 	}
-	public Vertex(String name) {
-		super();
-		this.name = name;
-		this.adjacentEdges = new ArrayList<>();
-	}
-	public void addEdge(Edge edge){
-		this.adjacentEdges.add(edge);
-	}
 	public void setAdjacentEdges(List<Edge> adjacentEdges) {
 		this.adjacentEdges = adjacentEdges;
 	}
+	public Vertex(String name) {
+		super();
+		this.name = name;
+		this.adjacentEdges =new ArrayList<>();
+	}
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.name;
 	}
 	
-
+	public void addEdge(Edge edge){
+		this.adjacentEdges.add(edge);
+	}
+	
 
 }

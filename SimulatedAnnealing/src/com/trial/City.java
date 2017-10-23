@@ -1,27 +1,19 @@
 package com.trial;
 
 public class City {
-	
+
 	private int x;
 	private int y;
-	
-	public City(){
-		x=(int)(Math.random()*100);
-		y=(int)(Math.random()*100);
+
+	public City(int x, int y) {
+		super();
+		this.x = x;
+		this.y = y;
 	}
-	
-	public City(int x,int y){
-		this.x=x;
-		this.y=y;
-	}
-	
-	public double ditanceTo(City otherCity){
-		int xCo = Math.abs(x-otherCity.getX());
-		int yCo = Math.abs(y-otherCity.getY());
-		
-		double distance = Math.sqrt((xCo*xCo)+(yCo*yCo));
-		
-		return distance;
+
+	public City() {
+		this.x = (int) (Math.random() * 100);
+		this.y = (int) (Math.random() * 100);
 	}
 
 	public int getX() {
@@ -40,9 +32,15 @@ public class City {
 		this.y = y;
 	}
 	
+	public double distanceTo(City otherCity){
+		int xDistance =Math.abs(this.x-otherCity.getX());
+		int yDistance =Math.abs(this.y-otherCity.getY());
+		
+		return Math.sqrt((xDistance*xDistance)+(yDistance*yDistance));
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.x+"-"+this.y;
 	}
 }

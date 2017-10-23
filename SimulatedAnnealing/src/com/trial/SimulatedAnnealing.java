@@ -1,40 +1,37 @@
 package com.trial;
 
-import java.util.Random;
-
 public class SimulatedAnnealing {
 	
+
 	private SingleTour best;
-	
 	
 	public void simulate(){
 		
+		double temperature=10000;
+		double coolingFactor=0.003;
+		
 		SingleTour currentTour = new SingleTour();
 		
-		best = new SingleTour(currentTour.getTour());
+		best =new SingleTour(currentTour.getTour());
 		
-		System.out.println("initial distance was"+best.getDistance());
-		
-		double temperature = 10000;
-		double coolingRate = 0.003;
+		System.out.println(best.getDistance());
 		
 		while(temperature>1){
-			
 			SingleTour newTour = new SingleTour(currentTour.getTour());
 			
-			int randomIndex1 = (int)(Math.random()*CityRepository.cityRepositorySize());
-			int randomIndex2 = (int)(Math.random()*CityRepository.cityRepositorySize());
+			int randomIndex1 = (int)(Math.random()*newTour.getTour().size());
+			int randomIndex2 = (int)(Math.random()*newTour.getTour().size());
 			
-			City randomCity1 = newTour.getCity(randomIndex1);
+			City randomCity1= newTour.getCity(randomIndex1);
 			City randomCity2 = newTour.getCity(randomIndex2);
 			
 			newTour.setCity(randomIndex2, randomCity1);
 			newTour.setCity(randomIndex1, randomCity2);
-		
-			double currentEnergy = currentTour.getDistance();
-			double neighbourEnergy = newTour.getDistance();
 			
-			if(acceptanceProbability(currentEnergy,neighbourEnergy,temperature)>Math.random()){
+			double currentDistance = currentTour.getDistance();
+			double neighbourDistance = newTour.getDistance();
+			
+			if(acceptanceProbability(currentDistance,neighbourDistance,temperature)>Math.random()){
 				currentTour = new SingleTour(newTour.getTour());
 			}
 			
@@ -42,23 +39,25 @@ public class SimulatedAnnealing {
 				best = new SingleTour(currentTour.getTour());
 			}
 			
-			temperature *= 1-coolingRate;
+			temperature*=1-coolingFactor;
 		}
 		
 	}
 
-	private double acceptanceProbability(double currentEnergy, double neighbourEnergy, double temperature) {
+	private double acceptanceProbability(double currentDistance, double neighbourDistance, double temperature) {
 		
-		if(neighbourEnergy<currentEnergy)
+		if(neighbourDistance<currentDistance)
 			return 1;
 		
-		return Math.exp(currentEnergy-neighbourEnergy)/temperature;
+		return Math.exp(currentDistance-neighbourDistance)/temperature;
 	}
-
 
 	public SingleTour getBest() {
 		return best;
 	}
+	
+	
+	
 	
 	
 

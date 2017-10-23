@@ -6,46 +6,41 @@ import java.util.PriorityQueue;
 
 public class PrimsAlgorithm {
 	
-	private List<Vertex> unvisitedVertices;
+	private List<Vertex> unvistiedVertices;
+	private PriorityQueue<Edge> edgeQueue;
 	private List<Edge> mst;
-	private PriorityQueue<Edge> minHeap;
 	private double totalSpan;
 	
-	public PrimsAlgorithm(List<Vertex> vertexList) {
-		
-		unvisitedVertices = vertexList;
+	public PrimsAlgorithm(List<Vertex> vertexList){
+		this.unvistiedVertices=vertexList;
+		edgeQueue = new PriorityQueue<>();
 		mst = new ArrayList<>();
-		minHeap = new PriorityQueue<>();
 	}
 	
-	
 	public void primsAlgorithm(Vertex vertex){
-		
-		unvisitedVertices.remove(vertex);
-		
-		while(!unvisitedVertices.isEmpty()){
-			for(Edge edge:vertex.getAdjacentEdges()){	
-				
-				if(unvisitedVertices.contains(edge.getTargetVertex())){
-	
-					minHeap.add(edge);
+		unvistiedVertices.remove(vertex);
+		while(!unvistiedVertices.isEmpty()){
+			for(Edge edge: vertex.getAdjacentEdges()){
+				Vertex u = edge.getTargetVertex();
+				if(unvistiedVertices.contains(u)){
+					edgeQueue.add(edge);
+					
 				}
-				
 			}
 			
-			Edge minEdge = minHeap.remove();
+			Edge minEdge = edgeQueue.poll();
 			mst.add(minEdge);
-			totalSpan+=minEdge.getWeight();	
+			totalSpan+=minEdge.getWeight();
+			
 			vertex = minEdge.getTargetVertex();
-			unvisitedVertices.remove(vertex);
+			unvistiedVertices.remove(vertex);
 		}
-		
 	}
 	
 	public void showMST(){
 		System.out.println(totalSpan);
 		for(Edge edge:mst){
-			System.out.println(edge.getStartVertex()+"-"+edge.getTargetVertex());
+			System.out.println(edge.getStartVertex()+"--"+edge.getTargetVertex());
 		}
 	}
 

@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.Stack;
 
 public class TarjanAlgorithm {
-
+	
+	private int time;
 	private List<Vertex> vertexList;
-	private List<List<Vertex>> components;
-	private int lowLinkCount;
+	List<List<Vertex>> components;
 	private Stack<Vertex> vertexStack;
-
+	
 	public TarjanAlgorithm(List<Vertex> vertexList) {
 		super();
 		this.vertexList = vertexList;
-		this.components = new ArrayList<>();
-		vertexStack= new Stack<>();
+		components = new ArrayList<>();
+		vertexStack = new Stack<>();
 	}
-
-	public void runAlgorithm() {
-		for (Vertex vertex : vertexList) {
-			if (!vertex.isVisited()) {
+	
+	public void runAlgorithm(){
+		for(Vertex vertex : vertexList){
+			if(!vertex.isVisited()){
 				dfs(vertex);
 			}
 		}
@@ -28,41 +28,36 @@ public class TarjanAlgorithm {
 
 	private void dfs(Vertex vertex) {
 		vertex.setVisited(true);
-		vertex.setLowLink(lowLinkCount++);
+		vertex.setLowlink(time++);
+		boolean componentRoot =true;
 		vertexStack.push(vertex);
-
-		boolean isComponentRoot = true;
-
-		for (Vertex v : vertex.getAdjacentVertices()) {
-			if (!v.isVisited()) {
+		
+		for(Vertex v:vertex.getAdjacentVertices()){
+			if(!v.isVisited()){
 				dfs(v);
-				
 			}
-
-			if (v.getLowLink() < vertex.getLowLink()) {
-				vertex.setLowLink(v.getLowLink());
-				isComponentRoot = false;
+			
+			if(vertex.getLowlink()>v.getLowlink()){
+				vertex.setLowlink(v.getLowlink());
+				componentRoot = false;
 			}
 		}
-
-		if (isComponentRoot) {
-			Vertex currentVertex ;
+		
+		if(componentRoot){
 			List<Vertex> component = new ArrayList<>();
-			while (true) {
-				currentVertex=vertexStack.pop();
-				currentVertex.setLowLink(Integer.MAX_VALUE);
+			while(true){
+				Vertex currentVertex = vertexStack.pop();
+				currentVertex.setLowlink(Integer.MAX_VALUE);
 				component.add(currentVertex);
-				
 			
-				if(currentVertex.getName().equals(vertex.getName()))break;
-				
+				if(currentVertex.getName().equals(vertex.getName())) break;
 			}
 			components.add(component);
 		}
+		
 	}
 	
-	public void showComponents(){
+	public void printComponents(){
 		System.out.println(components);
 	}
-
 }

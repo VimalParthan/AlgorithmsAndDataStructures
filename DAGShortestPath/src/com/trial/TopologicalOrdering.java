@@ -3,36 +3,35 @@ package com.trial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepthFirstOrder {
+public class TopologicalOrdering {
 	
 	private List<Vertex> vertexList;
 	
-	public DepthFirstOrder() {
+	public TopologicalOrdering(){
 		vertexList = new ArrayList<>();
 	}
 	
-	
 	public void dfs(List<Vertex> vertexList){
 		for(Vertex vertex:vertexList){
-			if(!vertex.isVisited()){
+			if(!vertex.isVisited())
 				dfs(vertex);
-			}
 		}
 	}
-
 
 	private void dfs(Vertex vertex) {
 		vertex.setVisited(true);
-		for(Vertex v:vertex.getVertex()){
-			if(!v.isVisited()){
-				dfs(v);
+		for(Edge edge: vertex.getAdjacentEdges()){
+			if(!edge.getTargetVertex().isVisited()){
+				dfs(edge.getTargetVertex());
 			}
 		}
+		
 		vertexList.add(vertex);
 	}
 	
-	public List<Vertex> getVertexList(){
+	public List<Vertex> getTopologicallyOrderedVertices(){
 		return this.vertexList;
 	}
 	
+
 }

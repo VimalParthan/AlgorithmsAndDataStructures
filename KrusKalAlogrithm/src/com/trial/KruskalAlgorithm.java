@@ -5,15 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class KruskalAlgorithm {
+	
+	private List<Edge> mst;
+	private double totalSpan;
 
-	
-	
-	public void minimumSpanningTree(List<Vertex> vertexList,List<Edge> edgeList){
+	public void spanningTree(List<Vertex> vertexList,List<Edge> edgeList){
 		
 		DisjointSet disjointSet = new DisjointSet(vertexList);
 		
 		Collections.sort(edgeList);
-		List<Edge> mst =new ArrayList<>();
+		
+		mst = new ArrayList<>();
+		
 		for(Edge edge:edgeList){
 			Vertex u = edge.getStartVertex();
 			Vertex v = edge.getTargetVertex();
@@ -25,11 +28,12 @@ public class KruskalAlgorithm {
 		}
 		
 		for(Edge edge:mst){
-			System.out.println(edge.getStartVertex()+"-"+edge.getTargetVertex());
+			System.out.println(edge.getStartVertex()+"--"+edge.getTargetVertex());
+			totalSpan +=edge.getWeight();
 		}
-		
+		System.out.println(totalSpan);
 	}
 	
-	
 
+	
 }

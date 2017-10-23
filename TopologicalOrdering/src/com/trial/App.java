@@ -1,14 +1,12 @@
 package com.trial;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class App {
-
 	public static void main(String[] args) {
-		
 
-		TopologicalOrder topologicalOrdering = new TopologicalOrder();
+		TopologicalOrdering topologicalOrdering = new TopologicalOrdering();
 		List<Vertex> graph = new ArrayList<>();
 
 		graph.add(new Vertex("0"));
@@ -25,10 +23,9 @@ public class App {
 		graph.get(4).addNeighbour(graph.get(0));
 		graph.get(4).addNeighbour(graph.get(1));
 
-		topologicalOrdering.topologicalOrder(graph);
+		topologicalOrdering.dfs(graph);
 
-		topologicalOrdering.showTopologicalOrder();
-		
+		topologicalOrdering.showTopologicalOrdering();
+
 	}
-
 }

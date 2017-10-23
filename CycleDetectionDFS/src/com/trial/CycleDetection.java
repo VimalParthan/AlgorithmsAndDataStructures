@@ -3,30 +3,30 @@ package com.trial;
 import java.util.List;
 
 public class CycleDetection {
-
-	public void detectCycle(List<Vertex> vertexList) {
-
-		for (Vertex vertex : vertexList) {
-			if (!vertex.isVisited())
+	
+	public void detectCycle(List<Vertex> vertexList){
+		for(Vertex vertex: vertexList){
+			if(!vertex.isVisted()){
 				dfs(vertex);
+			}
 		}
-
 	}
 
 	private void dfs(Vertex vertex) {
-		vertex.setBeingVisited(true);
-		for (Vertex v : vertex.getAdjacentVertex()) {
-			if (v.isBeingVisited()) {
-				System.out.println("cycle detected");
+		vertex.setBeingVisted(true);
+		for(Vertex v:vertex.getAdjacentVertices()){
+			if(v.isBeingVisted()){
+				System.out.println("Cycle detected at: "+v);
 				return;
-			} else if (!v.isVisited()) {
-				v.setVisited(true);
+			}
+			if(!v.isVisted()){
 				dfs(v);
 			}
-
 		}
-		vertex.setBeingVisited(false);
-		vertex.setVisited(true);
+		
+		vertex.setVisted(true);
+		vertex.setBeingVisted(false);
+		
 	}
 
 }

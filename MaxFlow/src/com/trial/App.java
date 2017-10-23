@@ -31,9 +31,11 @@ public class App {
 
 
 
-		FordFulkersonAlgorithm fordFulkerson = new FordFulkersonAlgorithm(flowNetwork);
+		FordFulkerson fordFulkerson = new FordFulkerson(flowNetwork);
 		
 		fordFulkerson.runAlgorithm();
+		
+		fordFulkerson.verticesInMinCut();
 		
 		System.out.println("Maximum flow is: " + fordFulkerson.getMaxFlow());
 		

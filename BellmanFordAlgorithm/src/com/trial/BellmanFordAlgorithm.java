@@ -5,55 +5,58 @@ import java.util.Stack;
 
 public class BellmanFordAlgorithm {
 	
-	
-	public boolean bellmanFordAlgorithm(List<Vertex> vertexList,List<Edge> edgeList,Vertex rootVertex){
+	public boolean bellmanfordAlgorithm(List<Vertex> vertexList,List<Edge> edgeList,Vertex startVertex){
 		
-	
-		rootVertex.setDistance(0);
+		startVertex.setDistance(0);
+		
 		for(int i=0;i<vertexList.size()-1;i++){
 			for(Edge edge:edgeList){
+				
 				Vertex u = edge.getStartVertex();
-				Vertex v = edge.getTargetVertes();
+				Vertex v = edge.getTargetVertex();
 				
 				if(u.getDistance()==Double.MAX_VALUE)continue;
 				
 				double newDistance = u.getDistance()+edge.getWeight();
-				if(v.getDistance()>newDistance){
+				
+				if(newDistance<v.getDistance()){
 					v.setDistance(newDistance);
-					v.setPreviousVertex(u);
+					v.setParentVertex(u);
 				}
+				
+				
 			}
 		}
-		
 		
 		for(Edge edge:edgeList){
 			if(edge.getStartVertex().getDistance()!=Double.MAX_VALUE){
 				if(detectCycle(edge)){
+					System.out.println("Cycle detected at: "+edge.getStartVertex());
 					return true;
 				}
 			}
 		}
 		
 		return false;
-	}
-	
-	private boolean detectCycle(Edge edge){
-		return edge.getStartVertex().getDistance()+edge.getWeight()<edge.getTargetVertes().getDistance();
-	}
-	
-	public void shortestPathTo(Vertex vertex){
-		System.out.println(vertex.getDistance());
-		
-		Stack<Vertex> shortestPath = new Stack<>();
-		
-		while(vertex!=null){
-			shortestPath.push(vertex);
-			vertex = vertex.getPreviousVertex();
-		}
-		while(!shortestPath.isEmpty()){
-			System.out.println(shortestPath.pop());
-		}
 		
 	}
 
+	private boolean detectCycle(Edge edge) {
+		
+		return edge.getStartVertex().getDistance()+edge.getWeight()<edge.getTargetVertex().getDistance();
+	}
+	
+	public void shortestPathTo(Vertex vertex){
+		Stack<Vertex> shortestPath = new Stack<>();
+		while(vertex!=null){
+			shortestPath.push(vertex);
+			vertex = vertex.getParentVertex();
+		}
+		
+		while(!shortestPath.isEmpty()){
+			System.out.println(shortestPath.pop());
+		}
+	}
+
+	
 }

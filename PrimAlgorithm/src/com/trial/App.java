@@ -6,7 +6,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
-List<Vertex> vertexList = new ArrayList<>();
+		List<Vertex> vertexList = new ArrayList<>();
 		
 		Vertex vertex0 = new Vertex("A");
 		Vertex vertex1 = new Vertex("B");
@@ -27,6 +27,7 @@ List<Vertex> vertexList = new ArrayList<>();
 		PrimsAlgorithm primsAlgorithm = new PrimsAlgorithm(vertexList);
 		primsAlgorithm.primsAlgorithm(vertex2);
 		primsAlgorithm.showMST();
+		
 	}
 
 }

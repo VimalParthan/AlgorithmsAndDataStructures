@@ -6,22 +6,10 @@ import java.util.List;
 public class Vertex {
 
 	private String name;
+	private int lowlink;
 	private List<Vertex> adjacentVertices;
-	private int lowLink;
 	private boolean visited;
 
-	public Vertex(String name) {
-		super();
-		this.name = name;
-		this.adjacentVertices = new ArrayList<>();
-
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return this.name;
-	}
 
 	public String getName() {
 		return name;
@@ -29,6 +17,14 @@ public class Vertex {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getLowlink() {
+		return lowlink;
+	}
+
+	public void setLowlink(int lowlink) {
+		this.lowlink = lowlink;
 	}
 
 	public List<Vertex> getAdjacentVertices() {
@@ -39,14 +35,6 @@ public class Vertex {
 		this.adjacentVertices = adjacentVertices;
 	}
 
-	public int getLowLink() {
-		return lowLink;
-	}
-
-	public void setLowLink(int lowLink) {
-		this.lowLink = lowLink;
-	}
-
 	public boolean isVisited() {
 		return visited;
 	}
@@ -55,8 +43,19 @@ public class Vertex {
 		this.visited = visited;
 	}
 
+	public Vertex(String name) {
+		super();
+		this.name = name;
+		this.adjacentVertices = new ArrayList<>();
+
+	}
+
 	public void addNeighbour(Vertex vertex) {
 		this.adjacentVertices.add(vertex);
 	}
 
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

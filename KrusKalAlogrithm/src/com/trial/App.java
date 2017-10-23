@@ -7,6 +7,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		List<Vertex> vertexList = new ArrayList<>();
+		
 		vertexList.add(new Vertex("A"));
 		vertexList.add(new Vertex("B"));
 		vertexList.add(new Vertex("C"));
@@ -33,7 +34,7 @@ public class App {
 		edgeList.add(new Edge(vertexList.get(6), vertexList.get(7), 6));
 		
 		KruskalAlgorithm kruskalAlgorithm = new KruskalAlgorithm();
-		kruskalAlgorithm.minimumSpanningTree(vertexList, edgeList);
+		kruskalAlgorithm.spanningTree(vertexList, edgeList);
 
 	}
 

@@ -3,23 +3,22 @@ package com.trial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex {
+public class Vertex implements Cloneable{
 	
 	private String name;
-	private List<Vertex> adjacentList;
+	private List<Vertex> vertexList;
 	private boolean visited;
-	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Vertex> getAdjacentList() {
-		return adjacentList;
+	public List<Vertex> getVertexList() {
+		return vertexList;
 	}
-	public void setAdjacentList(List<Vertex> adjacentList) {
-		this.adjacentList = adjacentList;
+	public void setVertexList(List<Vertex> vertexList) {
+		this.vertexList = vertexList;
 	}
 	public boolean isVisited() {
 		return visited;
@@ -27,20 +26,20 @@ public class Vertex {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
-	
-	public void addNeighbour(Vertex vertex){
-		adjacentList.add(vertex);
-	}
-	
 	public Vertex(String name) {
 		super();
 		this.name = name;
-		this.adjacentList = new ArrayList<>();
+		this.vertexList = new ArrayList<>();
+
+	}
+	
+	public void addNeighbour(Vertex vertex){
+		this.vertexList.add(vertex);
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.name;
 	}
+	
 
 }

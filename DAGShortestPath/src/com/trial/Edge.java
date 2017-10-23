@@ -23,8 +23,8 @@ public class Edge {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public Edge(Vertex startVertex, Vertex targetVertex, double weight) {
-		super();
+	public Edge(double weight,Vertex startVertex, Vertex targetVertex) {
+
 		this.startVertex = startVertex;
 		this.targetVertex = targetVertex;
 		this.weight = weight;

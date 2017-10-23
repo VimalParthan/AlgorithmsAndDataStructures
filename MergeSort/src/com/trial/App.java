@@ -16,7 +16,6 @@ public class App {
 		
 		MergeSort mergeSort = new MergeSort(nums);
 		
-		mergeSort.mergeSort();
 
 		mergeSort.display();
 	}

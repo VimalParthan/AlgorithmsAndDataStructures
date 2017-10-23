@@ -7,10 +7,8 @@ public class Vertex implements Comparable<Vertex>{
 	
 	private String name;
 	private List<Edge> adjacentEdges;
-	private int distance = Integer.MAX_VALUE;
-	private Vertex previosVertex;
-	
-	
+	private double distance=Integer.MAX_VALUE;
+	private Vertex previousVertex;
 	
 	public String getName() {
 		return name;
@@ -24,39 +22,38 @@ public class Vertex implements Comparable<Vertex>{
 	public void setAdjacentEdges(List<Edge> adjacentEdges) {
 		this.adjacentEdges = adjacentEdges;
 	}
-	public int getDistance() {
-		return distance;
-	}
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
+	
 	public Vertex(String name) {
-
+		super();
 		this.name = name;
 		this.adjacentEdges = new ArrayList<>();
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 	
 	public void addNeighbour(Edge edge){
 		this.adjacentEdges.add(edge);
 	}
-	
-	
-	
-	public Vertex getPreviosVertex() {
-		return previosVertex;
+	public double getDistance() {
+		return distance;
 	}
-	public void setPreviosVertex(Vertex previosVertex) {
-		this.previosVertex = previosVertex;
-	}
-	@Override
-	public String toString() {
-		return this.name;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 	@Override
 	public int compareTo(Vertex o) {
-		// TODO Auto-generated method stub
-		return Integer.compare(this.distance, o.getDistance());
+		return Double.compare(this.distance, o.getDistance());
 	}
+	public Vertex getPreviousVertex() {
+		return previousVertex;
+	}
+	public void setPreviousVertex(Vertex previousVertex) {
+		this.previousVertex = previousVertex;
+	}
+	
 	
 
 }

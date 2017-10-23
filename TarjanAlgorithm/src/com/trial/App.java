@@ -37,7 +37,7 @@ public class App {
 
 		TarjanAlgorithm tarjanAlgorithm = new TarjanAlgorithm(vertexList);
 		tarjanAlgorithm.runAlgorithm();
-		tarjanAlgorithm.showComponents();
+		tarjanAlgorithm.printComponents();
 
 	}
 

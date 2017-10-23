@@ -1,45 +1,53 @@
 package com.trial;
 
 public class Edge {
-
+	
 	private Vertex startVertex;
 	private Vertex targetVertex;
-	private double availableFlow;
+	private double flowRemaining;
 	private double flowUsed;
-
 	public Vertex getStartVertex() {
 		return startVertex;
 	}
-
+	public void setStartVertex(Vertex startVertex) {
+		this.startVertex = startVertex;
+	}
 	public Vertex getTargetVertex() {
 		return targetVertex;
 	}
-
-	public double getAvailableFlow() {
-		return availableFlow;
+	public void setTargetVertex(Vertex targetVertex) {
+		this.targetVertex = targetVertex;
 	}
-
-	public void setAvailableFlow(double availableFlow) {
-		this.availableFlow = availableFlow;
+	public double getFlowRemaining() {
+		return flowRemaining;
 	}
+	public void setFlowRemaining(int flowRemaining) {
+		this.flowRemaining = flowRemaining;
+	}
+	public double getFlowUsed() {
+		return flowUsed;
+	}
+	public void setFlowUsed(int flowUsed) {
+		this.flowUsed = flowUsed;
+	}
+	
+	public void incrementFlowUsed(double incrementValue){
+		this.flowUsed+=incrementValue;
+	}
+	
+	public void decrementFlowUsed(double decrementValue){
+		this.flowRemaining-=decrementValue;
+	}
+	public Edge(Vertex startVertex, Vertex targetVertex,double capacity) {
 
-	public Edge(Vertex startVertex, Vertex targetVertex, double capacity) {
-		super();
 		this.startVertex = startVertex;
 		this.targetVertex = targetVertex;
-		this.availableFlow = capacity;
+		this.flowRemaining = capacity;
 	}
-
-	public void decrementAvailableFlow(double valueToDecrement) {
-		availableFlow -= valueToDecrement;
-	}
-
-	public void incrementFlowUsed(double valueToIncrement) {
-		flowUsed += valueToIncrement;
-	}
-
-	@Override
-	public String toString() {
-		return startVertex + "--" + targetVertex + " : " + flowUsed + "/" + flowUsed + availableFlow;
-	}
+	
+@Override
+public String toString() {
+	// TODO Auto-generated method stub
+	return startVertex+"-"+targetVertex;
+}
 }

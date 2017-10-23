@@ -16,14 +16,13 @@ public class App {
 		vertexList.add(vertex1);
 		vertexList.add(vertex2);
 		
-		vertex0.addNeighbour(new Edge(vertex0,vertex1,1));
-		vertex0.addNeighbour(new Edge(vertex0,vertex2,10));
-		vertex0.addNeighbour(new Edge(vertex1,vertex2,8));
+		vertex0.addNeighbour(new Edge(1,vertex0,vertex1));
+		vertex0.addNeighbour(new Edge(10,vertex0,vertex2));
+		vertex0.addNeighbour(new Edge(1,vertex1,vertex2));
 	
 		AcyclicShortestPath acyclicShortestPath = new AcyclicShortestPath();
-		acyclicShortestPath.dagShortestPath(vertexList, vertex0);
+		acyclicShortestPath.dagAlgorithm(vertexList, vertex0);
 		acyclicShortestPath.shortestPathTo(vertex2);
-		System.out.println(vertex2.getDistance());
 	
 	}
 
