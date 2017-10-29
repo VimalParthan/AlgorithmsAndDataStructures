@@ -63,7 +63,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 			}else if(node.getRightNode()==null){
 				System.out.println("removing node with left node");
 				Node<T> tempNode = node.getLeftNode();
-				node= tempNode;
+				node= null;
 				return tempNode;
 			}
 			System.out.println("removing node with two nodes");

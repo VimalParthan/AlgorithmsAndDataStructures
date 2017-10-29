@@ -1,82 +1,77 @@
 package com.vimal;
 
-public class LinkedList <T extends Comparable<T>>implements List<T>{
+public class LinkedList<T extends Comparable<T>> implements List<T>{
+	
 	private Node<T> root;
-	private int sizeOfList;
+	private int listSize;
 	
 	
 	@Override
 	public void insert(T data) {
-		++this.sizeOfList;
-		if(root==null){
-			this.root = new Node<T>(data);
+		
+		if(data==null)return;
+		
+		listSize++;
+		if(this.root==null){
+			root=new Node<T>(data,null);
 		}else{
-			insertDataAtBegining(data);
-		}	
-
-	}
-	
-	
-	private void insertDataAtBegining(T data){
-		Node<T> newNode = new Node<T>(data);
-		newNode.setNextNode(this.root);
-		this.root = newNode;
-	}
-	
-	private void insertDataAtEnd(T data,Node<T> node){
-		if(node.getNextNode()!=null){
-			insertDataAtEnd(data,node.getNextNode());
-		}else{
-			Node<T> newNode = new Node<>(data);
-			node.setNextNode(newNode);
+			insertAtStart(data);
 		}
+		
 	}
-	
+
+	private void insertAtStart(T data) {
+		
+		Node<T> newNode = new Node<T>(data,root);
+		this.root = newNode;
+		
+	}
+
 	@Override
 	public void remove(T data) {
-		if(this.root==null)
-			return;
 		
-		--this.sizeOfList;
+		if(data==null)return;
 		
-		if(this.root.getData().compareTo(data)==0){
-			this.root = this.root.getNextNode();
+		
+		if(root.getData().compareTo(data)==0){
+			this.root=root.getNextNode();
+			listSize--;
 		}else{
 			remove(data,root,root.getNextNode());
 		}
+		
 	}
-	
-	private void remove(T dataToRemove,Node<T> previousNode,Node<T> currentNode){
-		while(currentNode!= null){
-			if(currentNode.getData().compareTo(dataToRemove)==0){
-				previousNode.setNextNode(currentNode.getNextNode());
-				currentNode=  null;
-				return;
-			}
+
+	private void remove(T data,Node<T>previousNode, Node<T> currentNode) {
+		if(currentNode==null)return;
+		
+		while(currentNode!=null){
 			
+			if(currentNode.getData().compareTo(data)==0){
+				previousNode.setNextNode(currentNode.getNextNode());
+				listSize--;
+			}
 			previousNode = currentNode;
-			currentNode = currentNode.getNextNode();
+			currentNode=currentNode.getNextNode();
 		}
+		
 	}
-	
-	
+
 	@Override
 	public void traverseList() {
-		
-		if(this.root == null) return;
-		Node<T> actualNode = this.root;
-		while(actualNode !=null)
-		{
-			System.out.print(actualNode+" -> ");
-			actualNode = actualNode.getNextNode();
-		}			
+		Node<T> tempNode = root;
+		while(tempNode!=null){
+			System.out.println(tempNode);
+			tempNode= tempNode.getNextNode();
+		}
 		
 	}
+
 	@Override
-	public int size() {
-		
-		return this.sizeOfList;
+	public int listSize() {
+		return listSize;
 	}
 	
 	
+
 }

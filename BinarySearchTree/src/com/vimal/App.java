@@ -1,19 +1,33 @@
 package com.vimal;
 
+
+
 public class App {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Tree<Person> bst = new BinarySearchTree<>();
+		Tree<Integer> myTree = new BinarySearchTree<>();
+		myTree.insert(10);
+		myTree.insert(9);
+		myTree.insert(256);
+		myTree.insert(2);
+		myTree.insert(56);
+		myTree.insert(3); 
+		myTree.insert(12);
+		myTree.insert(23);
+		myTree.insert(9);
+	
 		
-		bst.insert(new Person("Adam",27));
-		bst.insert(new Person("Veena",27));
-		bst.insert(new Person("Joe",27));
-		bst.insert(new Person("Michael",27));
-		bst.insert(new Person("Smith",27));
-		bst.insert(new Person("vimal",27));
+		myTree.inorderTraversal();
+		System.out.println("");
+		myTree.preOrdertraversal();
+		System.out.println("");
+		myTree.postOrderTraversal();
+		System.out.println("");
+		System.out.println(myTree.max());
+		System.out.println(myTree.min());
 		
-		bst.inorderTraversal();
+		myTree.delete(10);
+		myTree.inorderTraversal();
 	}
 
 }

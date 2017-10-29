@@ -1,14 +1,22 @@
 package com.vimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class Algorithm {
 	private Stack<String> operationStack;
 	private Stack<Double> valueStack;
 	
+
+	
+	
+	
 	public Algorithm() {
 		super();
 		this.operationStack = new Stack<>();
 		this.valueStack = new Stack<>();
+		
+		
 	}
 	
 	public void interpretExpression(String expression){
