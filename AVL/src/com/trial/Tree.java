@@ -1,7 +1,9 @@
 package com.trial;
 
-public interface Tree <T extends Comparable<T>>{
-	public void insert(T data);
-	public void delete(T data);
-	public void traverse();
+public interface Tree <T extends Comparable<T>> {
+	
+	void insert(T data);
+	void delete(T data);
+	void traverse();
+
 }

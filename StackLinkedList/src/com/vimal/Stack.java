@@ -1,37 +1,47 @@
 package com.vimal;
 
 public class Stack <T extends Comparable<T>>{
+	
+	private Node<T> root;
+	private int size;
 
-		private Node<T> root;
-		private int count;
+
+	
+	public Stack(){
 		
-		public void push(T newData){
-			this.count++;
-			if(this.root == null){
-				this.root = new Node<>(newData);
-			}else{
-				Node<T> newNode = new Node<T>(newData);
-				newNode.setNextNode(this.root);
-				this.root = newNode;
-			}
-		}
+	}
+	
+	public void push(T data){
 		
-		public T pop(){
-			T itemToPop = this.root.getData();
-			this.root = this.root.getNextNode();
-			this.count--;
-			return itemToPop;
+		if(data==null){
+			return;
+		}else if(this.root==null){
+			this.root= new Node<T>(data);
+			size++;
+		}else{
+			Node<T> temp = this.root; 
+			this.root = new Node<T>(data);
+			this.root.setNextNode(temp);
+			size++;
 		}
-		
-		public T peek(){
-			return this.root.getData();
+	}
+	
+	public T pop(){
+		if(this.root==null){
+			return null;
+		}else{
+			Node<T> temp = this.root;
+			this.root=this.root.getNextNode();
+			return temp.getData();
 		}
-		
-		public int size(){
-			return this.count;
-		}
-		
-		public boolean isEmpty(){
-			return this.root== null;
-		}
+	}
+	
+	public T peek(){
+		return this.root.getData();
+	}
+	
+	public int size(){
+		return this.size;
+	}
+
 }

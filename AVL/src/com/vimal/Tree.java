@@ -1,7 +1,9 @@
 package com.vimal;
 
 public interface Tree <T extends Comparable<T>>{
-	public void insert(T data);
-	public void traverse();
-	public void delete(T data);
+	
+	void insert(T data);
+	void delete(T data);
+	void traverse();
+
 }

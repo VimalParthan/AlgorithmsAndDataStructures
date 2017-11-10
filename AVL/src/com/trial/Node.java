@@ -1,16 +1,16 @@
 package com.trial;
 
 public class Node <T extends Comparable<T>>{
-
+	
 	private T data;
 	private Node<T> leftNode;
 	private Node<T> rightNode;
 	private int height;
 	
-	public Node(T data) {
-		super();
+	public Node(T data){
 		this.data = data;
 	}
+	
 	public T getData() {
 		return data;
 	}
@@ -37,9 +37,8 @@ public class Node <T extends Comparable<T>>{
 	}
 	@Override
 	public String toString() {
+		// TODO Auto-generated method stub
 		return this.data.toString();
 	}
-	
-	
 	
 }

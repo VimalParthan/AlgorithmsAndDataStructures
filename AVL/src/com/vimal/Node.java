@@ -1,12 +1,12 @@
 package com.vimal;
 
 public class Node <T extends Comparable<T>>{
-
 	
 	private T data;
 	private Node<T> leftNode;
 	private Node<T> rightNode;
 	private int height;
+	
 	public Node(T data) {
 		this.data = data;
 	}
@@ -34,11 +34,11 @@ public class Node <T extends Comparable<T>>{
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
 	@Override
 	public String toString() {
+		
 		return this.data.toString();
 	}
-	
-	
-	
+
 }

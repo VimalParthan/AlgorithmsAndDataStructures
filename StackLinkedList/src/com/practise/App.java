@@ -1,5 +1,4 @@
 package com.practise;
-
 public class App {
 	public static void main(String[] args) {
 	
@@ -16,6 +15,8 @@ public class App {
 		System.out.println(st.pop());
 		System.out.println(st.pop());
 		System.out.println(st.isEmpty());
+		
+
 		
 	}
 }

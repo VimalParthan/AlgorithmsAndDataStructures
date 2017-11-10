@@ -1,206 +1,173 @@
 package com.trial;
 
-public class AVLTree <T extends Comparable<T>> implements Tree<T>{
+public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 
 	private Node<T> root;
 	
 	@Override
 	public void insert(T data) {
-		this.root = insert(this.root,data);
+		this.root= insert(this.root,data);
 		
 	}
-	
-	
-	
-	private Node<T> insert (Node<T> node, T data){
-		
+
+	private Node<T> insert(Node<T> node, T data) {
 		if(node==null){
-			return new Node<T>(data);
-		}
-		
-		if(data.compareTo(node.getData())<0){
+			node=new Node<T>(data);
+		}else if(data.compareTo(node.getData())<0){
 			node.setLeftNode(insert(node.getLeftNode(),data));
-		}else{
-			node.setRightNode(insert(node.getRightNode(),data));
-		}
-		
-		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode()))+1);
-		
-		node = settleViolation(node,data);
-		
-		return node;
-	}
-	
-	private Node<T> settleViolation(Node<T> node,T data){
-		
-		int balance = getBalance(node);
-		
-		if(balance>1){
-			if(data.compareTo(node.getLeftNode().getData())>0){
-				node.setLeftNode(leftRotation(node.getLeftNode()));
-			}
-			
-			return rightRotation(node);
-		}
-		
-		if(balance<-1){
-			if(data.compareTo(node.getRightNode().getData())<0){
-				node.setRightNode(rightRotation(node.getRightNode()));
-			}
-			
-			return leftRotation(node);
-		}
-		
-		return node;
-		
-	}
-	
-	@Override
-	public void delete(T data) {
-		
-		this.root = delete(this.root,data);
-		
-	}
-	
-	private Node<T> delete(Node<T> node,T data){
-		
-		if(node==null){
-			return node;
-		}
-		
-		if(data.compareTo(node.getData())<0){
-			node.setLeftNode(delete(node.getLeftNode(), data));
 		}else if(data.compareTo(node.getData())>0){
-			node.setRightNode(delete(node.getRightNode(), data));
-		}else{
-			if(node.getLeftNode()==null&&node.getRightNode()==null){
-				return null;
-			}
-			
-			else if(node.getLeftNode()==null){
-				Node<T> tempNode = node.getRightNode();
-				node=null;
-				return tempNode;
-			}
-			
-			else if(node.getRightNode()==null){
-				Node<T> tempNode = node.getLeftNode();
-				node =null;
-				return tempNode;
-			}
-			
-			else {
-				Node<T> tempNode = getPredecessor(node.getLeftNode());
-				node.setData(tempNode.getData());
-				tempNode.setLeftNode(delete(node.getLeftNode(),tempNode.getData()));
-			}
-			
+			node.setRightNode(insert(node.getRightNode(), data));
 		}
 		
 		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode()))+1);
 		
-		return settleDeleteViolation(node);
+		return settleViolation(node,data);
+		
 	}
-	
-	
-	private Node<T> settleDeleteViolation(Node<T> node){
-		
-		int balance = getBalance(node);
-		
-		if(balance>1){
-			if(getBalance(node.getLeftNode())<0){
-				node.setLeftNode(leftRotation(node.getLeftNode()));
-			}
-			return rightRotation(node);
-		}
-		
-		if(balance<-1){
-			if(getBalance(node.getRightNode())>0){
-				node.setRightNode(rightRotation(node.getRightNode()));
-			}
-			
-			return leftRotation(node);
-		}
-		
 
+	private Node<T> settleViolation(Node<T> node,T data) {
+		int balance = balance(node);
 		
-		return node;
-	}
-	
-	private Node<T> getPredecessor(Node<T> node){
-		if(node.getRightNode()!=null){
-			getPredecessor(node.getRightNode());
+		if(balance>1&&data.compareTo(node.getLeftNode().getData())<0){
+			return rightRotate(node);
+		}else if(balance<-1&&data.compareTo(node.getRightNode().getData())>0){
+			return leftRotate(node);
+		}else if(balance>1&&data.compareTo(node.getLeftNode().getData())>0){
+			node.setLeftNode(leftRotate(node.getLeftNode()));
+			return rightRotate(node);
+		}else if(balance<-1&&data.compareTo(node.getRightNode().getData())<0){
+			node.setRightNode(rightRotate(node.getRightNode()));
+			return leftRotate(node);
 		}
-		
 		
 		return node;
 	}
 
-	@Override
-	public void traverse() {
-			
-		if(this.root==null){
-			return;
-		}else{
-			inOrderTraversal(this.root);
-		}
+	private Node<T> rightRotate(Node<T> node) {
+		Node<T> tempNode = node.getLeftNode();
+		Node<T> leftRightNode = tempNode.getRightNode();
 		
-	}
-	
-	private void inOrderTraversal(Node<T> node){
-		if(node.getLeftNode()!=null){
-			inOrderTraversal(node.getLeftNode());
-		}
+		tempNode.setRightNode(node);
+		node.setLeftNode(leftRightNode);
 		
-		System.out.println(node);
-		
-		if(node.getRightNode()!=null){
-			inOrderTraversal(node.getRightNode());
-		}
-	}
-	
-	private Node<T> leftRotation(Node<T> node){
-		Node<T> tempRightNode = node.getRightNode();
-		Node<T> t = tempRightNode.getLeftNode();
-		
-		tempRightNode.setLeftNode(node);
-		node.setRightNode(t);
+		tempNode.setHeight(Math.max(height(tempNode.getLeftNode()), height(tempNode.getRightNode()))+1);
 		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode()))+1);
-		tempRightNode.setHeight(Math.max(height(tempRightNode.getLeftNode()),height( tempRightNode.getRightNode()))+1);
 		
-		
-		return tempRightNode;
+		return tempNode;
 	}
 	
-	private Node<T> rightRotation(Node<T> node){
-		Node<T> tempLeftNode = node.getLeftNode();
-		Node<T> t = tempLeftNode.getRightNode();
+	private Node<T> leftRotate(Node<T> node) {
+		Node<T> tempNode = node.getRightNode();
+		Node<T> rightLeftNode = tempNode.getLeftNode();
 		
-		tempLeftNode.setRightNode(node);
-		node.setLeftNode(t);
+		tempNode.setLeftNode(node);
+		node.setRightNode(rightLeftNode);
 		
+		tempNode.setHeight(Math.max(height(tempNode.getLeftNode()), height(tempNode.getRightNode()))+1);
 		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode()))+1);
-		tempLeftNode.setHeight(Math.max(height(tempLeftNode.getLeftNode()), height(tempLeftNode.getRightNode()))+1);
 		
-		
-		return tempLeftNode;
+		return tempNode;
 	}
-	
-	private int getBalance(Node<T> node){
+
+	private int balance(Node<T> node) {
 		
 		if(node==null){
 			return 0;
 		}
+		
 		return height(node.getLeftNode())-height(node.getRightNode());
-				
 	}
 
-	private int height(Node<T> node){
+	private int height(Node<T> node) {
 		if(node==null){
 			return -1;
 		}
 		
 		return node.getHeight();
 	}
+
+	@Override
+	public void delete(T data) {
+		this.root= delete(this.root,data);
+		
+	}
+
+	private Node<T> delete(Node<T> node, T data) {
+		if(node==null){
+			return node;
+		}else if(data.compareTo(node.getData())<0){
+			node.setLeftNode(delete(node.getLeftNode(), data));
+		}else if(data.compareTo(node.getData())>0){
+			node.setRightNode(delete(node.getRightNode(),data));
+		}else{
+			if(node.getLeftNode()==null&&node.getRightNode()==null){
+				return null;
+			}else if(node.getLeftNode()==null){
+				Node<T> tempNode = node.getLeftNode();
+				node=null;
+				return tempNode;
+			}else if(node.getRightNode()==null){
+				Node<T> tempNode = node.getRightNode();
+				node=null;
+				return tempNode;
+			}else{
+				
+				Node<T> tempNode = getPredecessor(node.getLeftNode());
+				node.setData(tempNode.getData());
+				node.setLeftNode(delete(node.getLeftNode(),node.getData()));
+				
+			}
+
+		}
+		
+		node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode()))+1);
+		return settleDeletion(node);
+	}
+
+	private Node<T> settleDeletion(Node<T> node) {
+		int balance = balance(node);
+		if(balance>1){
+			if(balance(node.getLeftNode())<0){
+				node.setLeftNode(leftRotate(node.getLeftNode()));
+			}
+			return rightRotate(node);
+		}else if(balance<-1){
+			if(balance(node.getRightNode())>0){
+				node.setRightNode(rightRotate(node.getRightNode()));
+			}
+			return leftRotate(node);
+		}
+		
+		return node;
+	}
+
+	private Node<T> getPredecessor(Node<T> node) {
+		if(node.getRightNode()!=null){
+			getPredecessor(node);
+		}
+		return node;
+	}
+
+	@Override
+	public void traverse() {
+		
+		inorderTraversal(this.root);
+		
+	}
+
+	private void inorderTraversal(Node<T> node) {
+		
+		
+		if(node.getLeftNode()!=null){
+			inorderTraversal(node.getLeftNode());
+		}
+		System.out.println(node);
+		
+		if(node.getRightNode()!=null){
+			inorderTraversal(node.getRightNode());
+		}
+	}
+
+
 
 }
