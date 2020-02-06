@@ -14,6 +14,7 @@ public class App {
 		System.out.println(myStack.pop());
 		System.out.println(myStack.pop());
 		System.out.println(myStack.pop());
-	}
+
+    }
 
 }
